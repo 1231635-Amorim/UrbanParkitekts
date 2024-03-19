@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class EmployeeTest {
 
-
+    @Test
     void ensureTwoEmployeesWithSameEmailEquals() {
         Employee employee1 = new Employee("john.doe@this.company.com");
         Employee employee2 = new Employee("john.doe@this.company.com");
