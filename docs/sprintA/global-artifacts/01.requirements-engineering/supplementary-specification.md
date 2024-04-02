@@ -31,14 +31,18 @@ _Refers to the integrity, compliance and interoperability of the software. The r
 _Evaluates the performance requirements of the software, namely: response time, start-up time, recovery time, memory consumption, CPU usage, load capacity and application availability._
 
 - The system must provide fast response times for search and retrieval of property data.
-
+- The application must be capable of handling large amounts of data and users.
+- The system must be able to generate reports in a timely and efficient manner.
 ## Supportability
 
 _The supportability requirements gathers several characteristics, such as:
 testability, adaptability, maintainability, compatibility,
 configurability, installability, scalability and more._
 
-(fill in here )
+- All error messages should be detailed.
+- All the input data must be tested.
+- Should ve used JavaDoc to generate documentation.
+- All the images have to be in svg format.
 
 ## +
 
@@ -46,7 +50,7 @@ configurability, installability, scalability and more._
 
 _Specifies or constraints the system design process. Examples may include: programming languages, software process, mandatory standards/patterns, use of development tools, class library, etc._
 
-(fill in here )
+- All the users must be authenticated with a password of seven alphanumeric characters, including three capital letters and two digits.
 
 ### Implementation Constraints
 
@@ -54,7 +58,10 @@ _Specifies or constraints the code or construction of a system such
 such as: mandatory standards/patterns, implementation languages,
 database integrity, resource limits, operating system._
 
-(fill in here )
+- The application graphical interface is to be developed in JavaFX 11.
+- To generate documents it should be used JavaDoc.
+- The application must support the English language.
+- The application must be design in Java language using the Intellij IDE or NetBeans.
 
 ### Interface Constraints
 
@@ -67,4 +74,4 @@ system being developed with other external systems._
 
 _Specifies a limitation or physical requirement regarding the hardware used to house the system, as for example: material, shape, size or weight._
 
-(fill in here )
+- The user must have the basic I/O Devices;
