@@ -2,83 +2,165 @@
 skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
-'skinparam linetype ortho
-'left to right direction
 skinparam classAttributeIconSize 0
 hide circle
 hide methods
 
-'title Domain Model
+title Project Domain Model
 
-'class Platform {
-'  -description
-'}
-
-class Organization {
+class GreenSpace {
+    id
     name
-    vatNumber
-    website
-    phoneNumber
-    email
+    type
+    size
+    location
 }
 
-class Task {
-    reference
-    description
-    informalDesc
-    technicalDesc
-    duration
-    cost
-}
-
-class Category {
-    description
+class Team {
+    id
+    name
+    members
+    skillsRequired
 }
 
 class Employee {
+    id
     name
-    email
-    position
-    phone
+    job
+    skills
 }
 
-class TechnicalSkill{
-    shortDescription
-    fullDescription
+class Vehicle {
+    id
+    type
+    status
 }
 
-class ActivityArea{
-    shortDescription
-    fullDescription
+class Machine {
+    id
+    name
+    type
 }
 
-class FeatureTS{
-    mandatory
+class Equipment {
+    id
+    name
+    type
 }
 
-'class User {
-'    name
-'    email
-'    password
-'}
-class PostalAddress{
-    street
-    zipCode
-    city
+class Agenda {
+    id
+    entries
 }
-'Platform "1" -- "*" Organization : has registered >
-'Platform "1" -- "*" Category : defines >
-Organization "1" - "0..*" Employee : has >
-Organization "1" - "0..*" Task: owns >
-'Task "*" -- "1" Employee: created by >
-Employee "1" -- "*" Task : creates >
-'Employee "0..1" -- "1" User: acts as >
-Task "*" - "1" Category: cataloged as >
-TechnicalSkill "*" - "1" ActivityArea: regarding an >
 
-Category "*" - "*" TechnicalSkill :  : requires >
-(Category, TechnicalSkill) . FeatureTS
+class GreenSpacesUserPortal {
+    id
+    comments
+    reports
+}
 
-Organization "1" -left "1" PostalAddress : located At >
+class User {
+    id
+    username
+    password
+}
+
+class HumanResourcesManager {
+    id
+    name
+    teamsManaged
+}
+
+class FleetManager {
+    id
+    name
+    vehiclesManaged
+}
+
+class GreenSpaceManager {
+    id
+    name
+    greenSpacesManaged
+}
+
+class Task {
+    id
+    description
+    assignee
+    status
+}
+
+class VehicleCheckUp {
+    id
+    vehicle
+    date
+    status
+}
+
+class SystemAdministrator {
+    id
+    username
+    password
+}
+
+class Role {
+    id
+    name
+}
+
+class Skill {
+    id
+    name
+}
+
+class Job {
+    id
+    title
+    description
+}
+
+class UserStory {
+    id
+    description
+    acceptanceCriteria
+}
+
+note top of GreenSpace : It can be a garden, medium-sized park, or large-sized park
+note top of Team : Represents a group of employees assigned to specific tasks
+note top of Employee : Represents a member of the organization
+note top of Vehicle : Represents vehicles used by teams
+note top of Machine : Represents machines used by teams
+note top of Equipment : Represents equipment used by teams
+note top of Agenda : Contains entries for tasks to be carried out
+note top of GreenSpacesUserPortal : Allows users to interact with green spaces
+note top of User : Represents a user of the system
+note top of SystemAdministrator : Manages system users and configurations
+note top of Role : Represents roles within the organization
+note top of Skill : Represents skills possessed by employees
+note top of Job : Represents job positions within the organization
+note top of UserStory : Represents a user story for development
+
+GreenSpace "1" -- "*" Team : manages
+Team "1" -- "*" Employee : has members
+Employee "1" -- "*" Skill : possesses
+Team "1" -- "*" Vehicle : uses
+Team "1" -- "*" Machine : uses
+Team "1" -- "*" Equipment : uses
+Agenda "1" -- "*" Task : contains
+Vehicle "1" -- "*" VehicleCheckUp : has check-ups
+GreenSpacesUserPortal "1" -- "*" Comment : contains
+GreenSpacesUserPortal "1" -- "*" Report : contains
+User "1" -- "1" SystemAdministrator : manages
+User "1" -- "1" HumanResourcesManager : manages
+User "1" -- "1" FleetManager : manages
+User "1" -- "1" GreenSpaceManager : manages
+Employee "1" -- "1" Role : has role
+Employee "1" -- "1" Job : holds job
+Role "1" -- "*" Skill : requires
+Job "1" -- "*" Task : involves
+Task "*" -- "1" Employee : assigned to
+Task "*" -- "1" Team : belongs to
+UserStory "*" -- "1" Team : associated with
 
 @enduml
+
