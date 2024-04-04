@@ -1,0 +1,12 @@
+@startuml
+
+class HumanResourcesManager {
+}
+
+class Skill {
+    Name
+}
+
+HumanResourcesManager "1" -- "*" Skill : registers >
+
+@enduml
