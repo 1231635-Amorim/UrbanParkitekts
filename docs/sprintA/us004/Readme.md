@@ -4,6 +4,3 @@
 
 [Analysis](02.analysis/Readme.md)
 
-[Design] - Not Available
-
-[Tests & Implementation ] - Not Available
