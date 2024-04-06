@@ -1,4 +1,4 @@
-# US 002 -  As an HRM, I want to register a job that a collaborator need to have.
+# US 001 -  As a Human Resources Manager (HRM), I want to register skills that a collaborator may have.
 
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 
