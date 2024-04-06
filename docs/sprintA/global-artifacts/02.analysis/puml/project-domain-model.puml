@@ -44,6 +44,8 @@ Skill "*" -- "1" User : to >
 User "*" -- "1" Job : has a >
 User "1" -- "1" UserPortal : entries >
 Organization "1" -- "*" Job : has >
+HumanResourcesManager "1" -- "*" Skill : registers >
+Organization "1" -- "*" Skill : has >
 
 @enduml
 

@@ -1,12 +1,24 @@
 @startuml
 
 class HumanResourcesManager {
+    name
+    email
+    phoneNumber
 }
 
 class Skill {
-    Name
+    name
+}
+
+class Organization {
+    name
+    vatNumber
+    website
+    phoneNumber
+    email
 }
 
 HumanResourcesManager "1" -- "*" Skill : registers >
+Organization "1" -- "*" Skill : has >
 
 @enduml
