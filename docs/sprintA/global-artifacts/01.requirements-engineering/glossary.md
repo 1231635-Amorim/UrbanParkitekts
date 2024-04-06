@@ -2,8 +2,6 @@
 
 **Terms, Expressions and Acronyms (TEA) must be organized alphabetically.**
 
-_(Complete according to the provided example)_
-
 | **_TEA_** (EN)    | **_TEA_** (PT)              | **_Description_** (EN)                                                                                                                                                                                             |                                       
 |:------------------|-----------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Agenda**        | **Agenda**                  | Weekly planning mechanism that defines tasks to be performed by each team in a green space on a specific date.                                                                                                     |
