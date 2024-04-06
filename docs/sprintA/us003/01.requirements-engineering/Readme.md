@@ -53,13 +53,10 @@ Input Data:
     - Confirmation of the success or failure of the registration operation.
 ### 1.6. System Sequence Diagram (SSD)
 
-_Insert here a SSD depicting the envisioned Actor-System interactions and throughout which data is inputted and outputted to fulfill the requirement. All interactions must be numbered._
+**Other alternatives might exist.**
 
-![USXXX-SSD](svg/usXXX-system-sequence-diagram.svg)
+#### Alternative One
+
+![US003-SSD](svg/us003-system-sequence-diagram-alternative-one.svg)
 
 ### 1.7 Other Relevant Remarks
-
-_Use this section to capture other relevant information that is related with this US such as:  
-&nbsp; &nbsp; (i) special requirements;  
-&nbsp; &nbsp; (ii) data and/or technology variations;  
-&nbsp; &nbsp; (iii) how often this US is held._
