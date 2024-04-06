@@ -1,37 +1,49 @@
 @startuml
 
 class HumanResourcesManager {
-
+    name
+    email
+    phoneNumber
 }
 
 class Skill {
-    Title
-    Description
+    title
+    description
 }
 
 class User {
-    Name
-    DateOfBirth
-    DateOfAdmission
-    Address
-    PhoneNumber
-    Email
-    IdentificationDocumentNumber
-    TaxPayerNumber
+    name
+    dateOfBirth
+    dateOfAdmission
+    address
+    phoneNumber
+    email
+    identificationDocumentNumber
+    taxpayerNumber
 }
 
 class Job {
-    Title
-    Description
+    title
+    description
 }
 
 class UserPortal {
-
 }
+
+class Organization {
+    name
+    vatNumber
+    website
+    phoneNumber
+    email
+}
+
 HumanResourcesManager "1" -- "*" Skill : assign >
 HumanResourcesManager "1" -- "*" User : registers >
 Skill "*" -- "1" User : to >
 User "*" -- "1" Job : has a >
 User "1" -- "1" UserPortal : entries >
+Organization "1" -- "*" Job : has >
 
 @enduml
+
