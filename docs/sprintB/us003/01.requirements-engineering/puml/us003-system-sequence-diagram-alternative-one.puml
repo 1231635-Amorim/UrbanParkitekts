@@ -1,0 +1,50 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US3 System Sequence Diagram (SSD) - Alternative One
+
+
+autonumber
+actor "Human Resources Manager" as collaborator
+
+participant ":System" as System
+
+activate collaborator
+
+
+
+    collaborator -> System : asks to register a new collaborator
+    activate System
+
+    System --> collaborator : shows an available job category list and asks to select one
+
+    deactivate System
+
+    collaborator -> System : selects a job category
+
+    activate System
+
+    System --> collaborator : requests collaborator data (name, date of birth, date of admission, address, contact\n(telephone and email),identification document and your number.)
+
+       deactivate System
+
+        collaborator -> System : provides collaborator data
+
+               activate System
+
+    System --> collaborator : shows collaborator details and asks to confirm all the data
+        deactivate System
+
+    collaborator -> System : confirms data
+
+       activate System
+
+      System --> collaborator : registers collaborator
+
+              deactivate System
+
+       System --> collaborator : displays operation success
+
+@enduml

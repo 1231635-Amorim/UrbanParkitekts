@@ -1,0 +1,32 @@
+@startuml
+
+class HumanResourcesManager {
+
+}
+
+class User {
+    Name
+    DateOfBirth
+    DateOfAdmission
+    Address
+    PhoneNumber
+    Email
+    IdentificationDocumentNumber
+    TaxPayerNumber
+}
+
+class Job {
+    Title
+    Description
+}
+
+class UserPortal {
+
+}
+HumanResourcesManager "1" -- "*" User : registers >
+User "*" -- "1" Job : has a >
+User "1" -- "1" UserPortal : entries >
+
+@enduml
+
+

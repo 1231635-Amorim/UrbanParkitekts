@@ -1,0 +1,25 @@
+@startuml
+title US2 System Sequence Diagram (SSD) - Alternative One
+
+actor "Human Resources Manager" as HRM
+participant System
+participant Organization
+
+activate HRM
+HRM -> System : requests to create a new job
+activate System
+System -> System : Validate job details
+alt Job details are valid
+    System -> Organization : Check organization details
+    activate Organization
+    Organization --> System : Sends organization details
+    deactivate Organization
+    System -> System : Create job in the system
+    System -> HRM : Confirms job creation
+else Job details are not valid
+    System -> HRM : Informs HRM of invalid job details
+end
+deactivate System
+deactivate HRM
+
+@enduml
