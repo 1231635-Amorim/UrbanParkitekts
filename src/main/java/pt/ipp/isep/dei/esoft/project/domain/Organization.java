@@ -162,8 +162,7 @@ public class Organization {
         clone.website = (this.website);
         clone.phone = (this.phone);
         clone.email = (this.email);
-
-        for (Employee in : this.employees) {
+         for (Employee in : this.employees) {
             clone.employees.add(in.clone());
         }
 
@@ -173,5 +172,15 @@ public class Organization {
         }
 
         return clone;
+    }
+    public boolean isValid(){
+        if (name == null || name.isEmpty() || vatNumber == null || vatNumber.isEmpty()) {
+            return false; //
+        }
+        return true;
+    }
+
+    public void addSkill(Skill skill){
+        addSkill(skill);
     }
 }
