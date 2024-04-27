@@ -183,4 +183,8 @@ public class Organization {
     public void addSkill(Skill skill){
         addSkill(skill);
     }
+
+    public void addJob(Job job){
+        addJob((job));
+    }
 }

@@ -46,4 +46,13 @@ public class HumanResourcesManager {
         }
         return false;
     }
+    public boolean registerJob (Job job, Organization organization) {
+        if (job.isValid()) {
+            if (organization.isValid()) {
+                organization.addJob(job);
+                return true;
+            }
+        }
+        return false;
+    }
 }
