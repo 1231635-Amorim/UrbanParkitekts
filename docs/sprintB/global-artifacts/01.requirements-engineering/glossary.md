@@ -25,7 +25,8 @@
 | **Teams**         | **Equipas**                 | Temporary associations of collaborators who perform a set of tasks in one or more green spaces.                                                                                                                    |
 | **User Portal**   | **Portal do Utilizador**    | Platform where users of green spaces can post comments and report malfunctions or failures of equipment.                                                                                                           |
 | **FM**            | **FM**                      | Vehicle and Equipment Fleet Manager (FM) is a professional responsible for overseeing the acquisition, operation, maintenance, and disposal of an organization's vehicles, machinery, and equipment fleet.         |
-
+| **QAM**           | **QAM**                     | Software Quality Assessment Team Manager (QAM) a person who manage the Software Quality Assessment Team and its process.                                                                                           |
+| **VFM**           | **VFM**                     | Vehicle and Equipment Fleet Manager (VFM) a person who manages the fleet park, the machines, equipment and vehicles, ensuring their good condition and assigning them to the tasks to be carried out.              |
 
 
 

@@ -4,8 +4,12 @@ public class Skill {
 
     private String skillName;
 
-    public Skill(String skillName){
+    public Skill(String name, String skillName){
         this.skillName=skillName;
+    }
+
+    public Skill(String skillName) {
+
     }
 
     public String getSkillName(){

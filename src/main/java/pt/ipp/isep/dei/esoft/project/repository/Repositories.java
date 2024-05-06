@@ -1,13 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.repository;
 
-import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
-
 public class Repositories {
 
     private static Repositories instance;
     private final OrganizationRepository organizationRepository;
     private final TaskCategoryRepository taskCategoryRepository;
     private final AuthenticationRepository authenticationRepository;
+    private Object SkillRepository;
 
     private Repositories() {
         organizationRepository = new OrganizationRepository();
@@ -34,5 +33,8 @@ public class Repositories {
 
     public AuthenticationRepository getAuthenticationRepository() {
         return authenticationRepository;
+    }
+
+    public SkillsRepository getSkillRepository() { return (SkillsRepository) SkillRepository;
     }
 }
