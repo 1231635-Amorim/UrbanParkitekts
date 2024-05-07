@@ -8,12 +8,14 @@ public class Repositories {
     private final AuthenticationRepository authenticationRepository;
     private final SkillsRepository skillsrepository;
     private Object SkillsRepository;
+    private final JobRepository jobrepository;
 
     private Repositories() {
         organizationRepository = new OrganizationRepository();
         taskCategoryRepository = new TaskCategoryRepository();
         authenticationRepository = new AuthenticationRepository();
         skillsrepository = new SkillsRepository();
+        jobrepository = new JobRepository();
     }
 
     public static Repositories getInstance() {
@@ -39,4 +41,5 @@ public class Repositories {
 
     public SkillsRepository getSkillRepository() { return (SkillsRepository) SkillsRepository;
     }
+    public JobRepository getJobrepository(){return (JobRepository) jobrepository;}
 }

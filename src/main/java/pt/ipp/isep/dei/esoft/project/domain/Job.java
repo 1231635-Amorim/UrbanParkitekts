@@ -28,4 +28,8 @@ public class Job {
         }
         return true;
     }
+
+    public String getName() {
+        return null;
+    }
 }
