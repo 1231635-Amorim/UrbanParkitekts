@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.ui.console.menu;
 
+import pt.ipp.isep.dei.esoft.project.ui.console.utils.RegisterCollaboratorUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.RegisterJobUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.RegisterSkillUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
@@ -14,8 +15,9 @@ public class HRMUI implements Runnable {
 
     public void run() {
         List<MenuItem> options = new ArrayList<>();
-        options.add(new MenuItem("Register a skill",new RegisterSkillUI()));
-        options.add(new MenuItem("Register a job",new RegisterJobUI()));
+        options.add(new MenuItem("Register a skill", new RegisterSkillUI()));
+        options.add(new MenuItem("Register a job", new RegisterJobUI()));
+        options.add(new MenuItem("Register Collaborator", new RegisterCollaboratorUI()));
         options.add(new MenuItem("Generate Team Proposal", new GenerateTeamProposalUI()));
 
         int option = 0;
@@ -28,4 +30,3 @@ public class HRMUI implements Runnable {
         } while (option != -1);
     }
 }
-

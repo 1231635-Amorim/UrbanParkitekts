@@ -15,13 +15,10 @@ public class RegisterJobUI implements Runnable {
     public void run() {
         System.out.println("\n\n--- Register Job -------------------------");
 
-        // Solicita ao usuário os detalhes do novo cargo
         String jobName = requestJobName();
 
-        // Chama o controlador para registrar o novo cargo
         boolean success = controller.registerJob(jobName);
 
-        // Exibe o resultado da operação de registro
         if (success) {
             System.out.println("\nJob successfully registered!");
         } else {

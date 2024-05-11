@@ -10,12 +10,10 @@ public class CreateSkillController {
 
     private SkillsRepository skillRepository;
 
-    // Repository instances are obtained from the Repositories class
     public CreateSkillController() {
         getSkillRepository();
     }
 
-    // Allows receiving the repository as a parameter for testing purposes
     public CreateSkillController(SkillsRepository skillRepository) {
         this.skillRepository = skillRepository;
     }

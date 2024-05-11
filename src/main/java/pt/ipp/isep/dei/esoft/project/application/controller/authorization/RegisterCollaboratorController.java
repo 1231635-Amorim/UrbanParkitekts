@@ -7,11 +7,11 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.EmailService;
 
 import java.util.Date;
 
-public class CollaboratorService {
+public class RegisterCollaboratorController {
     private CollaboratorRepository collaboratorRepository;
     private EmailService emailService;
 
-    public CollaboratorService(CollaboratorRepository collaboratorRepository, EmailService emailService) {
+    public RegisterCollaboratorController() {
         this.collaboratorRepository = collaboratorRepository;
         this.emailService = emailService;
     }
@@ -83,5 +83,3 @@ public class CollaboratorService {
         return password.toString();
     }
 }
-
-

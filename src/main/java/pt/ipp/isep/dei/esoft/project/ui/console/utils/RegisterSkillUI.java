@@ -15,14 +15,11 @@ public class RegisterSkillUI implements Runnable {
     public void run() {
         System.out.println("\n\n--- Register Skills ----------------------");
 
-        // Solicita ao usuário os detalhes da nova habilidade
         String skillName = requestSkillName();
         String skillDescription = requestSkillDescription();
 
-        // Chama o controlador para registrar a nova habilidade
         boolean success = controller.registerSkill(skillName, skillDescription);
 
-        // Exibe o resultado da operação de registro
         if (success) {
             System.out.println("\nSkill successfully registered!");
         } else {

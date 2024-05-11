@@ -40,10 +40,8 @@ public class CreateSkillUI implements Runnable {
     }
 
     private void requestData() {
-        //Request the Skill Name from the console
         skillName = requestSkillName();
 
-        //Request the Skill Description from the console
         skillDescription = requestSkillDescription();
     }
 

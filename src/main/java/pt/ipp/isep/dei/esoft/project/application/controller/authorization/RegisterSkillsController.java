@@ -12,14 +12,12 @@ public class RegisterSkillsController {
     }
 
     public boolean registerSkill(String name, String description) {
-        // Verifica se a habilidade já existe no repositório
         Skill existingSkill = skillRepository.getSkillByName(name);
         if (existingSkill != null) {
             System.out.println("Skill with the same name already exists!");
             return false;
         }
 
-        // Cria uma nova habilidade e a adiciona ao repositório
         Skill newSkill = new Skill(name, description);
         skillRepository.add(newSkill);
         return true;
