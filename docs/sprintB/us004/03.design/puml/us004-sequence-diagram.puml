@@ -8,8 +8,8 @@ autonumber
 title Skill Registration
 
 actor "Human Resources Manager" as HRManager
-participant "RegisterSkillUI" as UI
-participant "RegisterSkillController" as Controller
+participant "AssignSkillUI" as UI
+participant "AssignSkillController" as Controller
 participant "Skill" as Skill
 participant "CollaboratorRepository" as Repo
 participant "SkillRepository" as RepoSkill
@@ -34,7 +34,7 @@ UI --> HRManager: list collaborators and ask to choose one
 HRManager -> UI: choose one
 UI --> HRManager: ask to write the skills
 HRManager -> UI: write the skills
-UI -> Controller: register Skill(skillname,email)
+UI -> Controller: assign Skill(skillname,email)
 activate Controller
 Controller -> Skill: new Skill(skillname,email)
 activate Skill
