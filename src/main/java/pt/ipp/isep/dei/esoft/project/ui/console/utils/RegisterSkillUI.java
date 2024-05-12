@@ -30,7 +30,11 @@ public class RegisterSkillUI implements Runnable {
     private String requestSkillName() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter skill name: ");
-        return input.nextLine();
+        return removeSpecialCharactersAndDigits(input.nextLine());
+    }
+
+    private String removeSpecialCharactersAndDigits(String input) {
+        return input.replaceAll("[^a-zA-Z\\s]", "");
     }
 
     private String requestSkillDescription() {
