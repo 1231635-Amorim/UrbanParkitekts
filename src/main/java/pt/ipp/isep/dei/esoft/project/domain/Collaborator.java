@@ -1,3 +1,12 @@
+/**
+ * The Collaborator class represents a collaborator in the system.
+ * It contains information such as name, birth date, address, contact details, identification, job, and password.
+ * Collaborators are associated with specific job positions.
+ * They are used within the system to assign tasks and manage projects.
+ *
+ * @author [João Amorim]
+ */
+
 package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Date;
@@ -15,6 +24,21 @@ public class Collaborator {
     private Job job;
     private String password;
 
+    /**
+     * Constructs a Collaborator object with the specified information.
+     *
+     * @param name           The name of the collaborator.
+     * @param birthDate      The birth date of the collaborator.
+     * @param admissionDate  The admission date of the collaborator.
+     * @param address        The address of the collaborator.
+     * @param mobile         The mobile phone number of the collaborator.
+     * @param email          The email address of the collaborator.
+     * @param taxpayerNumber The taxpayer number of the collaborator.
+     * @param idDocType      The type of identification document.
+     * @param idNumber       The identification number.
+     * @param job            The job position of the collaborator.
+     * @param password       The password of the collaborator.
+     */
     public Collaborator(String name, Date birthDate, Date admissionDate, String address, String mobile, String email,
                         String taxpayerNumber, String idDocType, String idNumber, Job job, String password) {
         this.name = name;
@@ -29,6 +53,8 @@ public class Collaborator {
         this.job = job;
         this.password = password;
     }
+
+    // Getters and Setters
 
     public String getName() {
         return name;
@@ -117,6 +143,8 @@ public class Collaborator {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    // toString method
 
     @Override
     public String toString() {
