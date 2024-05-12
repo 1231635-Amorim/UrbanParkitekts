@@ -55,4 +55,13 @@ public class CollaboratorRepository {
     public List<Collaborator> getAllCollaborators() {
         return List.copyOf(collaborators);
     }
+
+
+
+    public void updateCollaborator(Collaborator collaborator) {
+    }
+    public String getCollaboratorbyName(String name){
+        return name;
+    }
+
 }

@@ -57,4 +57,5 @@ public class RegisterJobController {
     private boolean isValidJobName(String name) {
         return Pattern.matches("^[a-zA-Z\\s]+$", name);
     }
+
 }

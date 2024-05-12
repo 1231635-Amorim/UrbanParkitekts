@@ -10,6 +10,7 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class Collaborator {
     private String name;
@@ -23,6 +24,7 @@ public class Collaborator {
     private String idNumber;
     private Job job;
     private String password;
+    private List<String> skills;
 
     /**
      * Constructs a Collaborator object with the specified information.
@@ -53,12 +55,16 @@ public class Collaborator {
         this.job = job;
         this.password = password;
     }
+    public Collaborator(String email){
+        this.email = email;
+    }
 
     // Getters and Setters
 
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;
@@ -161,5 +167,11 @@ public class Collaborator {
                 ", job=" + job +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public void setSkills(List<String> skills) {
+        this.skills = skills;
+    }
+    public String getCollaboratorByEmail(String email) {return email;
     }
 }
