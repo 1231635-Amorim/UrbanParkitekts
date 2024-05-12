@@ -117,4 +117,21 @@ public class Collaborator {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "Collaborator{" +
+                "name='" + name + '\'' +
+                ", birthDate=" + birthDate +
+                ", admissionDate=" + admissionDate +
+                ", address='" + address + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", email='" + email + '\'' +
+                ", taxpayerNumber='" + taxpayerNumber + '\'' +
+                ", idDocType='" + idDocType + '\'' +
+                ", idNumber='" + idNumber + '\'' +
+                ", job=" + job +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

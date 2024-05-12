@@ -8,21 +8,17 @@ import java.util.Optional;
 
 public class CollaboratorRepository {
 
-    private final List<Collaborator> collaborators;
+    private final List<Collaborator> collaborators = new ArrayList<>();
 
-    public CollaboratorRepository() {
-        this.collaborators = new ArrayList<>();
-    }
-
-    public Optional<Collaborator> add(Collaborator collaborator) {
+    public Collaborator add(Collaborator collaborator) {
         
         if (collaborators.contains(collaborator)) {
-            System.out.println("Collaborator with the same name already exists!");
-            return Optional.empty();
+            System.out.println("Collaborator already exists!");
+            return null;
         }
 
         collaborators.add(collaborator);
-        return Optional.of(collaborator);
+        return collaborator;
     }
 
     public Collaborator getCollaboratorByName(String name) {
@@ -36,11 +32,7 @@ public class CollaboratorRepository {
     }
 
     public List<Collaborator> getAllCollaborators() {
-       
-        return new ArrayList<>(collaborators);
-    }
-
-    public void save(Collaborator collaborator) {
+        return List.copyOf(collaborators);
     }
 }
 

@@ -8,12 +8,10 @@ import pt.ipp.isep.dei.esoft.project.ui.console.utils.EmailService;
 import java.util.Date;
 
 public class RegisterCollaboratorController {
-    private CollaboratorRepository collaboratorRepository;
-    private EmailService emailService;
+    private CollaboratorRepository collaboratorRepository = new CollaboratorRepository();
+    private EmailService emailService = new EmailService();
 
     public RegisterCollaboratorController() {
-        this.collaboratorRepository = collaboratorRepository;
-        this.emailService = emailService;
     }
 
     public String registerCollaborator(String name, Date birthDate, Date admissionDate, String address,
@@ -40,7 +38,7 @@ public class RegisterCollaboratorController {
         Collaborator collaborator = new Collaborator(name, birthDate, admissionDate, address, mobile, email,
                 taxpayerNumber, idDocType, idNumber, job, password);
 
-        collaboratorRepository.save(collaborator);
+        collaboratorRepository.add(collaborator);
 
         emailService.sendPasswordByEmail(collaborator.getEmail());
 

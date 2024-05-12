@@ -1,0 +1,41 @@
+@startuml
+class RegisterSkillUI {
+    +run()
+    -requestSkillName()
+    -requestSkillDescription()
+}
+
+class Skill {
+    -skillname
+    +Skill(skillName)
+    +isValid()
+}
+
+class RegisterSkillController {
+    - skillRepository
+    + RegisterSkillsController()
+    + registerSkill(name,description)
+}
+
+class SkillsRepository {
+    - skills
+    + SkillsRepository()
+    + getSkillByName(skillName)
+    + add(skill)
+    + validateSkill(skill)
+    + getSkills()
+}
+
+class CollaboratorRepository{
+    + add(collaborator)
+    + getCollaboratorByName(name)
+    + getAllCollaborators()
+    + save(collaborator)
+}
+
+RegisterSkillController -- CollaboratorRepository : >
+RegisterSkillUI  --  RegisterSkillController : >
+RegisterSkillController  --  SkillsRepository : uses >
+RegisterSkillController -- Skill : creates >
+
+@enduml
