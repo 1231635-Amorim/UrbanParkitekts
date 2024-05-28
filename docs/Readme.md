@@ -9,7 +9,6 @@ The teams consists of students identified in the following table.
 | **1231635**    | João Amorim     |
 | **1200542**    | Kevin Alexandre |
 | **1221585**    | Alexandre Cruz  |
-| **1231268**    | Afonso Sampaio  |
 
 # 2. Task Distribution ###
 
