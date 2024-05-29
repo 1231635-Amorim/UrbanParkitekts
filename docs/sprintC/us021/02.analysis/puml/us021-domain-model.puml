@@ -1,0 +1,59 @@
+@startuml
+
+skinparam monochrome false
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+
+hide circle
+hide methods
+
+class GSM {
+    backgroundcolor LightBlue
+    name
+    vatNumber
+    phoneNumber
+    email
+}
+
+class TDLEntry {
+    backgroundcolor LightGreen
+    title
+    taskDescription
+    urgencyLevel
+    duration
+    associatedGreenSpace
+}
+
+class GreenSpace {
+    backgroundcolor LightYellow
+    name
+    type
+    area
+}
+
+class GreenSpaceRepository {
+    backgroundcolor LightGray
+    GreenSpaces
+}
+
+class ToDoList {
+    backgroundcolor LightCyan
+    entries
+    gsm
+}
+
+class ToDoListRepository {
+    backgroundcolor LightGray
+    toDoLists
+}
+
+GSM "1" -- "*" TDLEntry: adds >
+TDLEntry "1" -- "1" GreenSpace: associated with >
+GreenSpace "1" -- "1" GreenSpaceRepository: stored in >
+GSM "1" - "1" GreenSpace: manages >
+GSM "1" -- "1" ToDoList: utilizes >
+TDLEntry "1" - "1" ToDoList: appears in >
+ToDoList "1" -- "1" ToDoListRepository: stored in >
+
+@enduml

@@ -1,0 +1,42 @@
+@startuml
+class AssignSkillUI {
+    - requestCollaboratorName
+    - requestSkills
+    + run()
+    + AssignSkillsUI()
+
+}
+
+class Skill {
+    - skillname
+    + Skill(skillName)
+    + isValid()
+}
+
+class AssignSkillController {
+    + assignSkills(name,skills)
+    + AssignSkillsController()
+}
+
+class SkillsRepository {
+    - skills
+    + SkillsRepository()
+    + getSkillByName(skillName)
+    + add(skill)
+    + validateSkill(skill)
+    + getSkills()
+}
+
+class CollaboratorRepository{
+    + add(collaborator)
+    + getCollaboratorByName(name)
+    + getAllCollaborators()
+    + save(collaborator)
+}
+
+AssignSkillController -- CollaboratorRepository : assign to >
+AssignSkillUI  --  AssignSkillController : >
+AssignSkillController  --  SkillsRepository : uses >
+AssignSkillController -- Skill : uses >
+
+@enduml

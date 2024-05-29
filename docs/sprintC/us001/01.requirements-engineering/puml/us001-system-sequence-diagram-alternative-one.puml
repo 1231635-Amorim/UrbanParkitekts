@@ -1,0 +1,25 @@
+@startuml
+title US1 System Sequence Diagram (SSD)
+
+actor "Human Resources Manager" as HRM
+participant System
+participant Organization
+
+activate HRM
+HRM -> System : requests to register a new skill
+activate System
+System -> System : Validate skill details
+alt Skill details are valid
+    System -> Organization : Check organization details
+    activate Organization
+    Organization --> System : Sends organization details
+    deactivate Organization
+    System -> System : Register skill in the system
+    System -> HRM : Confirms skill registration
+else Skill details are not valid
+    System -> HRM : Informs HRM of invalid skill details
+end
+deactivate System
+deactivate HRM
+
+@enduml

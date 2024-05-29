@@ -1,0 +1,59 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+title Collaborator Registration
+
+actor "Human Resources Manager" as HRManager
+participant "RegisterCollaboratorUI" as UI
+participant "RegisterCollaboratorController" as Controller
+participant "Collaborator" as Collaborator
+participant "CollaboratorRepository" as Repo
+participant "EmailService" as Email
+
+activate HRManager
+HRManager -> UI: requests collaborator registration
+activate UI
+
+UI -> UI: Requests job category
+UI -> Controller: requestJob()
+activate Controller
+Controller --> UI: list of job categories
+deactivate Controller
+
+UI -> HRManager: Selects job category
+
+HRManager -> UI: Inserts collaborator data
+UI -> UI: Gets collaborator data
+UI -> Controller: registerCollaborator(name, birthDate, admissionDate, address, mobile, email, taxpayerNumber, idDocType, idNumber, job)
+activate Controller
+
+alt Invalid Data
+    Controller --> UI: Error: invalid email format or other invalid data
+else Valid Data
+    Controller -> Controller: Generates random password
+    Controller -> Collaborator: new Collaborator(name, birthDate, admissionDate, address, mobile, email taxpayerNumber, idDocType, idNumber, job, password)
+    activate Collaborator
+    Collaborator --> Controller: returns Collaborator
+    deactivate Collaborator
+    Controller -> Repo: add(collaborator)
+    activate Repo
+    Repo --> Controller: Collaborator saved
+    deactivate Repo
+    Controller -> Email: sendPasswordByEmail(collaborator.getEmail())
+    activate Email
+    Email --> Controller: Email sent
+    deactivate Email
+    Controller --> UI: Success: collaborator registered
+    deactivate Controller
+    UI --> HRManager: Success: collaborator registered
+
+    deactivate UI
+end
+deactivate Controller
+deactivate UI
+
+@enduml

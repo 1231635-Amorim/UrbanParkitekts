@@ -1,0 +1,54 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+autonumber
+
+title Skill Registration
+
+actor "Human Resources Manager" as HRManager
+participant "AssignSkillUI" as UI
+participant "AssignSkillController" as Controller
+participant "Skill" as Skill
+participant "CollaboratorRepository" as Repo
+participant "SkillRepository" as RepoSkill
+
+activate HRManager
+HRManager -> UI: requests to assign a skill to a user
+activate UI
+
+UI --> HRManager: How many skills do you want to assign
+HRManager -> UI: provides number of skills
+UI -> Controller: getCollaborators()
+activate Controller
+Controller -> Repo: getCollaborators()
+activate Repo
+
+Repo --> Controller: return collaborators
+deactivate Repo
+Controller --> UI: return collaborators
+deactivate Controller
+
+UI --> HRManager: list collaborators and ask to choose one
+HRManager -> UI: choose one
+UI --> HRManager: ask to write the skills
+HRManager -> UI: write the skills
+UI -> Controller: assign Skill(skillname,email)
+activate Controller
+Controller -> Skill: new Skill(skillname,email)
+activate Skill
+Skill --> Controller: returns skill
+deactivate Skill
+Controller -> RepoSkill: add(skill)
+activate RepoSkill
+RepoSkill --> Controller: skill saved
+deactivate RepoSkill
+Controller --> UI: Success: skill registered
+deactivate Controller
+UI --> HRManager: Success: skill registered
+deactivate UI
+
+@enduml
+
+

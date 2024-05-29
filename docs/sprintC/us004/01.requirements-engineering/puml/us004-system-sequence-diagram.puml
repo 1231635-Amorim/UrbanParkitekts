@@ -1,0 +1,41 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title US4 System Sequence Diagram (SSD)
+
+autonumber
+actor "Human Resources Manager" as collaborator
+
+participant ":System" as System
+
+activate collaborator
+
+collaborator -> System : requests to assign a skill to a user
+activate System
+
+System --> collaborator : shows available skills list and asks to select one
+deactivate System
+
+collaborator -> System : selects a skill
+activate System
+
+System --> collaborator : requests user data (name, date of birth, date of admission, address, contact\n(telephone and email), identification document and your number)
+deactivate System
+
+collaborator -> System : provides user data
+activate System
+
+System --> collaborator : shows user details and asks to confirm all the data
+deactivate System
+
+collaborator -> System : confirms data
+activate System
+
+System --> collaborator : assigns skill to user
+deactivate System
+
+System --> collaborator : displays operation success
+
+@enduml

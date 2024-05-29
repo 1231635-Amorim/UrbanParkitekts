@@ -1,0 +1,32 @@
+@startuml
+skinparam monochrome true
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title System Sequence Diagram (SSD) - Register Green Space
+
+autonumber
+
+actor "Green Space Manager (GSM)" as GSM
+participant ":System" as System
+
+activate GSM
+
+    GSM -> System : request to register green space
+    activate System
+
+        System --> GSM : prompt for required fields (e.g., name, area, type)
+    deactivate System
+
+    GSM -> System : provide green space details (name, area, type)
+    activate System
+
+        System -> System : validate details and create green space object
+        System -> System : store green space in repository
+        System --> GSM : confirm successful registration
+    deactivate System
+
+deactivate GSM
+
+@enduml
+

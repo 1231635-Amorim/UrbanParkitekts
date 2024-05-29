@@ -1,0 +1,51 @@
+@startuml
+class RegisterCollaboratorUI {
+    +run()
+    -requestStringInput(message)
+    -requestDateInput(message)
+    -requestJob()
+}
+
+class Job {
+    - title: string
+    - description: string
+    + Job(title: string)
+}
+
+class Collaborator {
+    - name: string
+    - birthDate: Date
+    - admissionDate: Date
+    - address: string
+    - mobile: string
+    - email: string
+    - taxpayerNumber: string
+    - idDocType: string
+    - idNumber: string
+    - job: Job
+    - password: string
+    + Collaborator(name: string, birthDate: Date, admissionDate: Date, address: string, mobile: string, email: string, taxpayerNumber: string, idDocType: string, idNumber: string, job: Job)
+}
+
+class EmailService {
+    + sendPasswordByEmail(recipientEmail: string): void
+    - generatePassword(): string
+}
+
+class RegisterCollaboratorController {
+    - collaboratorRepository: CollaboratorRepository
+    - emailService: EmailService
+    + registerCollaborator(collaborator: Collaborator): string
+}
+
+class CollaboratorRepository {
+    - collaborators: List<Collaborator>
+    + add(collaborator: Collaborator): Optional<Collaborator>
+}
+RegisterCollaboratorUI  --  RegisterCollaboratorController : >
+Collaborator  --  Job : has a >
+RegisterCollaboratorController  --  CollaboratorRepository : uses >
+RegisterCollaboratorController  --  EmailService : uses >
+RegisterCollaboratorController -- Collaborator : creates >
+
+@enduml
