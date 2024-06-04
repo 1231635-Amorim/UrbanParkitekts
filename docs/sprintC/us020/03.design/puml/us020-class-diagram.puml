@@ -1,19 +1,19 @@
 @startuml
-
+'skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
 skinparam linetype polyline
 skinparam linetype ortho
-
 skinparam classAttributeIconSize 0
 
-
-class ApplicationSession {
+class ApplicationSession
+{
     + static getInstance()
     + getCurrentSession()
 }
 
-class UserSession {
+class UserSession
+{
     + getUserEmail()
 }
 
@@ -21,72 +21,70 @@ class GreenSpace {
     - name: String
     - area: double
     - type: GreenSpaceType
-
     + GreenSpace(name: String, area: double, type: GreenSpaceType)
-    + registerGreenSpace(repo: GreenSpaceRepository): void
+    + registerGreenSpace(greenSpaceRepository: GreenSpaceRepository): void
     + getName(): String
     + getArea(): double
     + getType(): GreenSpaceType
     {abstract} + displayDetails(): void
 }
 
-class Garden {
-    + Garden(name: String, area: double)
-    + displayDetails(): void
+class Collaborator {
+    - name: String
+    - birthdayDate: LocalDate
+    - admissionDate: LocalDate
+    - address: String
+    - phoneNumber: String
+    - email: String
+    - taxpayerNumber: int
+    - BINumber: long
+    - job: String
+    + Collaborator(name: String, birthdayDate: LocalDate, admissionDate: LocalDate, address: String, phoneNumber: String, email: String, taxpayerNumber: int, BINumber: long, job: String)
+    + equals(o: Object): boolean
+    + clone(): Collaborator
+    + getName(): String
+    + getBirthdayDate(): LocalDate
+    + getAdmissionDate(): LocalDate
+    + getAddress(): String
+    + getPhoneNumber(): String
+    + getEmail(): String
+    + getTaxpayerNumber(): int
+    + getBINumber(): long
+    + getJob(): String
+    + addJob(job: Job): void
 }
 
-class MediumSizedPark {
-    + MediumSizedPark(name: String, area: double)
-    + displayDetails(): void
-}
-
-class LargeSizedPark {
-    + LargeSizedPark(name: String, area: double)
-    + displayDetails(): void
+class CollaboratorRepository {
+    - List<Collaborator> collaborators
+    + addCollaborator(collaborator: Collaborator)
+    + removeCollaborator(collaborator: Collaborator)
+    + addSkillToCollaborator(collaboratorId: String, skill: Skill)
+    + getCollaborator(collaboratorId: String): Collaborator
+    + assignSkill(collaboratorId: String, skill: Skill)
 }
 
 class GreenSpaceRepository {
     - greenSpaces: List<GreenSpace>
-
     + addGreenSpace(greenSpace: GreenSpace): void
     + getGreenSpaces(): List<GreenSpace>
 }
 
 class RegisterGreenSpaceController {
-    - repo: GreenSpaceRepository
-
-    + RegisterGreenSpaceController(repo: GreenSpaceRepository)
+    - greenSpaceRepository: GreenSpaceRepository
+    + RegisterGreenSpaceController(greenSpaceRepository: GreenSpaceRepository)
     + registerGreenSpace(greenSpace: GreenSpace): void
     + getAllGreenSpaces(): List<GreenSpace>
 }
 
-enum GreenSpaceType {
-    GARDEN
-    MEDIUM_SIZED_PARK
-    LARGE_SIZED_PARK
-}
-
 ApplicationSession --> "1" UserSession : userSession
-
 RegisterGreenSpaceController ..> ApplicationSession
 RegisterGreenSpaceController ..> UserSession
-
-Repositories -> Repositories : instance
-
 RegisterGreenSpaceUI .> RegisterGreenSpaceController
+RegisterGreenSpaceController ..> CollaboratorRepository
 
-RegisterGreenSpaceController .> Repositories : repositories
-
-Repositories -> "1" GreenSpaceRepository
-
-RegisterGreenSpaceController ..> GreenSpaceRepository : uses
-
-GreenSpaceType --> Garden : can be
-GreenSpaceType --> MediumSizedPark : can be
-GreenSpaceType --> LargeSizedPark : can be
-
-GreenSpace --> "1" GreenSpaceType : has
-
-GreenSpaceRepository "1" --> "*" GreenSpace : GreenSpaces
+CollaboratorRepository-> Collaborator
+Collaborator ..> GreenSpace
+RegisterGreenSpaceController ..> GreenSpace
+GreenSpace ..> GreenSpaceRepository
 
 @enduml
