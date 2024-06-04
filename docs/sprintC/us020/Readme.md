@@ -1,5 +1,4 @@
-# US 004 - As an HRM, I want to assign one or more skills to a collaborator.
-
+# US20 - As a Green Space Manager (GSM), I want to register a green space (garden, medium-sized park or large-sized park) and its respective area.
 [Requirements Engineering](01.requirements-engineering/Readme.md)
 
 [Analysis](02.analysis/Readme.md)
