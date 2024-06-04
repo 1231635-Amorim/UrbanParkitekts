@@ -2,113 +2,58 @@
 skinparam monochrome true
 skinparam packageStyle rectangle
 skinparam shadowing false
-
 autonumber
+actor "User" as USER
+participant "ToDoListUI" as UI
+participant "ToDoListController" as CTRL
+participant "Repositories" as Repositories
+participant "ToDoListRepository" as ToDoListRepository
+participant "ApplicationSession" as APP
+participant "UserSession" as SESSION
+participant "ToDoList" as TODOLIST
 
-'hide footbox
-actor "Green Spaces Manager" as ADM
-participant ":AddEntryToDoListUI" as UI
-participant ":AddEntryToDoListController" as CTRL
-participant ":Repositories" as RepositorySingleton
-participant "repositories\n:Repositories" as PLAT
-participant "greenSpaceRepository\n:GreenSpaceRepository" as GSR
-participant "toDoListRepository\n:ToDoListRepository" as TDR
-participant "ToDoList" as TDL
-participant "TDLEntry" as ENTRADA
+activate USER
 
-activate ADM
-
-ADM -> UI : requests adding a new entry to the To-Do List
-
+USER -> UI : requests to create a new to-do list entry
 activate UI
-
-    UI -> CTRL** : create
-    activate CTRL
-
-        CTRL -> RepositorySingleton : getInstance()
-        activate RepositorySingleton
-
-            RepositorySingleton --> CTRL: repositories
-        deactivate RepositorySingleton
-
-        CTRL -> PLAT : getGreenSpaceRepository()
-        activate PLAT
-
-            PLAT -> CTRL : GreenSpaceRepository
-        deactivate PLAT
-
-        CTRL -> PLAT : getToDoListRepository()
-        activate PLAT
-
-            PLAT -> CTRL : ToDoListRepository
-        deactivate PLAT
-
-        UI -> CTRL : getGreenSpaceList()
-        ref over CTRL
-            Get Green Space List
-        end
-
-        CTRL --> UI : greenSpaces
-    deactivate CTRL
-
-UI --> ADM : shows a list of green spaces and requests selection
+    UI --> USER : prompts for necessary details (e.g., task description, urgency, expected duration, location, status)
 deactivate UI
 
-ADM -> UI : selects a green space
+USER -> UI : provides to-do list information (task description, urgency, expected duration, location, status, user email)
 activate UI
 
-    UI --> ADM : requests entry data (title, task description, urgency level \n(selectable), approximate duration)
-    deactivate UI
+    UI -> CTRL : addNewToDoListEntry(task description, urgency, expected duration, location, status, user email)
+    activate CTRL
 
-    ADM -> UI : provides data
-    activate UI
+        CTRL -> Repositories : getRepositoriesInstance()
+        activate Repositories
 
-        UI --> ADM : displays data and requests confirmation
-        deactivate UI
+            Repositories --> CTRL : toDoListRepository
+        deactivate Repositories
 
-        ADM -> UI : confirms data
-        activate UI
+        CTRL -> APP: getAppInstance()
+        activate APP
 
-            UI -> CTRL : addEntry(entryTitle, entryDescription, entryUrgency, entryDuration)
-            activate CTRL
+            APP -> CTRL: getCurrentSession()
+        deactivate APP
 
-                |||
-                CTRL -> CTRL : getGSMFromSession()
-                activate CTRL
+        CTRL -> SESSION: getCurrentUserEmail()
+        activate SESSION
 
-                    ref over CTRL
-                        Get GSM
-                    end
+            SESSION --> CTRL: user email
+        deactivate SESSION
 
-                    CTRL --> CTRL : gsm
-                deactivate CTRL
+        CTRL -> TODOLIST : createNewToDoList(task description, urgency, expected duration, location, status, user email)
+        activate TODOLIST
 
-                |||
+            TODOLIST -> TODOLIST : validate input
+            TODOLIST -> ToDoListRepository : addNewEntry(TODOLIST)
+        deactivate TODOLIST
 
-                CTRL -> TDR: getToDoListByGSM(gsm)
-                activate TDR
+        CTRL --> UI : notifies successful creation of the to-do list entry
+deactivate CTRL
 
-                    TDR --> CTRL: toDoList
-                deactivate TDR
+UI --> USER : confirms successful creation of the to-do list entry
+deactivate UI
 
-                CTRL -> TDL: addEntry(entryTitle, entryDescription, entryUrgency, entryDuration, gsm)
-                activate TDL
-
-                    TDL -> ENTRADA**: create
-
-                    TDL -> TDL: validateEntry(TDLEntry entry)
-                    activate TDL
-
-                        TDL --> TDL: true
-                    deactivate TDL
-
-                    TDL -> TDL: addEntry(TDLEntry entry)
-                    activate TDL
-
-                        TDL --> TDL: true
-                    deactivate TDL
-
-            UI --> ADM: displays successful operation
-        deactivate UI
-deactivate ADM
 @enduml
