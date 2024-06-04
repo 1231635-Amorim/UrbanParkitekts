@@ -1,0 +1,87 @@
+@startuml
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam linetype polyline
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+
+class ToDoList {
+- taskDescription: String
+- urgency: String
+- expectedDuration: int
+- greenspaceName: String
+- userEmail: String
+- status: String
++ ToDoList(taskDescription: String, urgency: String, expectedDuration: int, greenspaceName: String, status: String, userEmail: String)
++ getTaskDescription(): String
++ getUrgency(): String
++ getExpectedDuration(): int
++ getGreenspaceName(): String
++ getStatus(): String
++ getUserEmail(): String
+}
+class ToDoListRepository {
+- toDoLists: List<ToDoList>
++ add(toDoList: ToDoList): Optional<ToDoList>
++ getAllToDoLists(): List<ToDoList>
++ updateToDoListEntry(updatedEntry: ToDoList): void
++ findByTaskDescription(taskDescription: String): Optional<ToDoList>
++ findByUserEmailAndGreenSpaceName(userEmail: String, greenSpaceName: String): List<ToDoList>
+}
+class ToDoListController {
+- toDoListRepository: ToDoListRepository
++ ToDoListController()
++ createToDoListEntry(taskDescription: String, urgency: String, expectedDuration: int, greenspaceName: String, status: String, email: String): Optional<ToDoList>
++ updateToDoListStatus(taskDescription: String, newStatus: String): void
++ getAllToDoListEntries(): List<ToDoList>
+}
+class Repositories {
++ static getInstance(): Repositories
++ getToDoListRepository(): ToDoListRepository
++ getCollaboratorRepository(): CollaboratorRepository
+}
+
+class ToDoListUI {
+- controller: ToDoListController
+- scanner: Scanner
+- email: String
++ ToDoListUI(email: String)
++ run(): void
+}
+class UserSession {
++ getUserEmail(): String
+}
+class ApplicationSession {
++ static getInstance(): ApplicationSession
++ getCurrentSession(): UserSession
+}
+class Collaborator {
+- name: String
+- email: String
++ Collaborator(name: String, email: String)
++ getName(): String
++ getEmail(): String
+}
+
+class CollaboratorRepository {
+- collaborators: List<Collaborator>
++ addCollaborator(collaborator: Collaborator): void
++ removeCollaborator(collaborator: Collaborator): void
++ addSkillToCollaborator(collaboratorId: String, skill: Skill): void
++ getCollaborator(collaboratorId: String): Collaborator
++ assignSkill(collaboratorId: String, skill: Skill): void
+
+
+}
+
+ToDoListController .> Repositories
+Repositories --> ToDoListRepository
+Repositories --> CollaboratorRepository
+CollaboratorRepository --> Collaborator
+ToDoListUI .> ToDoListController
+ToDoListRepository --> ToDoList
+ApplicationSession --> UserSession
+ToDoListController ..> ApplicationSession
+ToDoListController ..> UserSession
+Collaborator ..> ToDoList : creat To Do List Entry
+@enduml
