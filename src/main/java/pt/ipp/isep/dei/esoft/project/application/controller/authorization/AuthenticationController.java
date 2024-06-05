@@ -14,6 +14,7 @@ public class AuthenticationController {
     public static final String ROLE_ADMIN = "ADMINISTRATOR";
     public static final String ROLE_EMPLOYEE = "EMPLOYEE";
     public static final String ROLE_HUMANRESOURCESMANAGER = "HUMAN RESOURCES MANAGER";
+    public static final String ROLE_GSM = "Green Space Manager";
 
     //private final ApplicationSession applicationSession;
     private final AuthenticationRepository authenticationRepository;
@@ -39,5 +40,8 @@ public class AuthenticationController {
 
     public void doLogout() {
         authenticationRepository.doLogout();
+    }
+    public String getCurrentUserEmail() {
+        return authenticationRepository.getCurrentUserEmail();
     }
 }

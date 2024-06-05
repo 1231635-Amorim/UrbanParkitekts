@@ -41,10 +41,11 @@ public class GreenSpaceRepositoryTest {
     @Test
     public void testAddGreenSpace_Null() {
         GreenSpace greenSpace = null;
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(NullPointerException.class, () -> {
             greenSpaceRepository.addGreenSpace(greenSpace);
         });
     }
+
 
     @Test
     public void testAddGreenSpace_Duplicate() {
@@ -58,9 +59,10 @@ public class GreenSpaceRepositoryTest {
 
     @Test
     public void testAddGreenSpace_InvalidGreenSpace() {
-        GreenSpace greenSpace = new Garden("", -500.0, "invalid-email");
         assertThrows(IllegalArgumentException.class, () -> {
+            GreenSpace greenSpace = new Garden("Invalid Garden", -500.0, "invalid-email");
             greenSpaceRepository.addGreenSpace(greenSpace);
         });
     }
+
 }

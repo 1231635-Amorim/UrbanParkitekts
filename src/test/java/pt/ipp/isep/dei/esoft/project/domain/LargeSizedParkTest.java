@@ -18,7 +18,6 @@ public class LargeSizedParkTest {
     public void tearDown() {
 
     }
-
     @Test
     public void testConstructorAndGetters() {
         assertEquals("Central Park", park.getName());

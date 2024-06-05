@@ -2,9 +2,9 @@ package pt.ipp.isep.dei.esoft.project.ui.console.authorization;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.AdminUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.menu.GreenSpacesManagerUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.HRMUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
-import pt.ipp.isep.dei.esoft.project.ui.console.utils.CreateSkillUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.Utils;
 import pt.isep.lei.esoft.auth.mappers.dto.UserRoleDTO;
 
@@ -28,13 +28,14 @@ public class AuthenticationUI implements Runnable {
         boolean success = doLogin();
 
         if (success) {
+            String userEmail = ctrl.getCurrentUserEmail();
             List<UserRoleDTO> roles = this.ctrl.getUserRoles();
             if ((roles == null) || (roles.isEmpty())) {
                 System.out.println("No role assigned to user.");
             } else {
                 UserRoleDTO role = selectsRole(roles);
                 if (!Objects.isNull(role)) {
-                    List<MenuItem> rolesUI = getMenuItemForRoles();
+                    List<MenuItem> rolesUI = getMenuItemForRoles(userEmail);
                     this.redirectToRoleUI(rolesUI, role);
                 } else {
                     System.out.println("No role selected.");
@@ -43,11 +44,11 @@ public class AuthenticationUI implements Runnable {
         }
         this.logout();
     }
-
-    private List<MenuItem> getMenuItemForRoles() {
+    private List<MenuItem> getMenuItemForRoles(String userEmail) {
         List<MenuItem> rolesUI = new ArrayList<>();
         rolesUI.add(new MenuItem(AuthenticationController.ROLE_ADMIN, new AdminUI()));
         rolesUI.add(new MenuItem(AuthenticationController.ROLE_HUMANRESOURCESMANAGER, new HRMUI()));
+        rolesUI.add(new MenuItem(AuthenticationController.ROLE_GSM, new GreenSpacesManagerUI(userEmail)));
 
         //TODO: Complete with other user roles and related RoleUI
         return rolesUI;

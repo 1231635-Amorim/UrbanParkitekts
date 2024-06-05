@@ -7,7 +7,6 @@ import pt.ipp.isep.dei.esoft.project.domain.GreenSpaceType;
 import java.util.List;
 import java.util.Scanner;
 
-
 /**
  * This class provides a user interface for registering green spaces.
  */
@@ -30,7 +29,7 @@ public class RegisterGreenSpaceUI implements Runnable {
      */
     public RegisterGreenSpaceUI(String userEmail) {
         this.userEmail = userEmail;
-        this.scanner = new Scanner(System.console().reader());
+        this.scanner = new Scanner(System.in);
     }
 
     /**
@@ -44,6 +43,7 @@ public class RegisterGreenSpaceUI implements Runnable {
 
         System.out.print("Enter area of the green space in square meters: ");
         double area = scanner.nextDouble();
+        scanner.nextLine();
 
         System.out.println("Select type of green space:");
         System.out.println("1. Garden");

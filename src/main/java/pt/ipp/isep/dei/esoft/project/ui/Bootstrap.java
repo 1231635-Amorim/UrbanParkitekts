@@ -8,6 +8,16 @@ import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.OrganizationRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 import pt.ipp.isep.dei.esoft.project.repository.TaskCategoryRepository;
+import pt.ipp.isep.dei.esoft.project.repository.GreenSpaceRepository;
+import pt.ipp.isep.dei.esoft.project.domain.Garden;
+import pt.ipp.isep.dei.esoft.project.domain.LargeSizedPark;
+import pt.ipp.isep.dei.esoft.project.domain.MediumSizedPark;
+import pt.ipp.isep.dei.esoft.project.domain.Garden;
+
+
+
+
+
 
 public class Bootstrap implements Runnable {
 
@@ -26,6 +36,7 @@ public class Bootstrap implements Runnable {
         organization.addEmployee(new Employee("admin@this.app"));
         organization.addEmployee(new Employee("employee@this.app"));
         organization.addEmployee(new Employee("hrm@this.app"));
+        organization.addEmployee(new Employee("gsm@this.app"));
         organizationRepository.add(organization);
     }
 
@@ -57,5 +68,8 @@ public class Bootstrap implements Runnable {
         authenticationRepository.addUserWithRole("Employee", "employee@this.app", "pwd",
                 AuthenticationController.ROLE_EMPLOYEE);
         authenticationRepository.addUserWithRole("Human Resource Manager","hrm@this.app","hrm",AuthenticationController.ROLE_HUMANRESOURCESMANAGER);
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_GSM, AuthenticationController.ROLE_GSM);
+        authenticationRepository.addUserWithRole("GSM", "gsm@this.app", "pwd",
+                AuthenticationController.ROLE_GSM);
     }
 }

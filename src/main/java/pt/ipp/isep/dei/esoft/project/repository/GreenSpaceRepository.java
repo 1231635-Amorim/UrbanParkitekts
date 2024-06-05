@@ -9,10 +9,6 @@ import java.util.List;
  * This class provides a repository for managing GreenSpace objects.
  */
 public class GreenSpaceRepository {
-    public void clear() {
-        greenSpaces.clear();
-    }
-
     /**
      * The list of GreenSpace objects stored in the repository.
      */
@@ -23,12 +19,17 @@ public class GreenSpaceRepository {
      *
      * @param greenSpace the GreenSpace object to be added
      */
-    public static void addGreenSpace(GreenSpace greenSpace) {
+    /**
+     * Adds a GreenSpace object to the repository.
+     *
+     * @param greenSpace the GreenSpace object to be added
+     */
+    public void addGreenSpace(GreenSpace greenSpace) {
         if (greenSpace == null) {
             throw new NullPointerException("GreenSpace cannot be null");
         }
-        if (greenSpaces.contains(greenSpace)) {
-            throw new IllegalStateException("Duplicate GreenSpace cannot be added");
+        if (containsGreenSpace(greenSpace)) {
+            throw new IllegalArgumentException("Duplicate GreenSpace cannot be added");
         }
         greenSpaces.add(greenSpace);
     }
@@ -39,9 +40,9 @@ public class GreenSpaceRepository {
      * @param greenSpace the GreenSpace object to check for
      * @return true if the GreenSpace object exists in the repository, false otherwise
      */
-    private static boolean containsGreenSpace(GreenSpace greenSpace) {
+    private boolean containsGreenSpace(GreenSpace greenSpace) {
         return greenSpaces.stream()
-                .anyMatch(gs -> gs.getName().equals(greenSpace.getName()) && gs.getEmail().equals(greenSpace.getEmail()));
+                .anyMatch(gs -> gs.equals(greenSpace));
     }
 
     /**
@@ -67,5 +68,12 @@ public class GreenSpaceRepository {
             }
         }
         return userGreenSpaces;
+    }
+
+    /**
+     * Clears all GreenSpace objects from the repository.
+     */
+    public void clear() {
+        greenSpaces.clear();
     }
 }

@@ -1,4 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.domain;
+import java.util.Objects;
 
 /**
  * This abstract class represents a green space.
@@ -33,10 +34,10 @@ public abstract class GreenSpace {
      * @param email the email address of the green space
      */
     public GreenSpace(String name, double area, GreenSpaceType type, String email) {
-        this.name = validateName(name);
-        this.area = validateArea(area);
-        this.type = validateType(type);
-        this.email = validateEmail(email);
+        this.name = name;
+        this.area = area;
+        this.type = type;
+        this.email = email;
     }
 
     /**
@@ -138,4 +139,18 @@ public abstract class GreenSpace {
      * @return
      */
     public abstract String displayDetails();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GreenSpace that = (GreenSpace) o;
+        return Double.compare(that.area, area) == 0 &&
+                Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, area);
+    }
 }
