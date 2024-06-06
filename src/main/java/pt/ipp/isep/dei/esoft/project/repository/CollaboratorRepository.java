@@ -64,4 +64,6 @@ public class CollaboratorRepository {
         return name;
     }
 
+    public List<Collaborator> getCollaborators() {return collaborators;
+    }
 }

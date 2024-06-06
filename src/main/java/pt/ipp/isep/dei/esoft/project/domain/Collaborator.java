@@ -10,7 +10,9 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Collaborator {
     private String name;
@@ -173,5 +175,15 @@ public class Collaborator {
         this.skills = skills;
     }
     public String getCollaboratorByEmail(String email) {return email;
+    }
+
+    public boolean hasSkills(String[] requiredSkills) {
+        Set<String> skillSet = new HashSet<>(skills);
+        for (String requiredSkill : requiredSkills) {
+            if (!skillSet.contains(requiredSkill)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

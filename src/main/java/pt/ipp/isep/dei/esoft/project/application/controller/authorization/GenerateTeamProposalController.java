@@ -8,39 +8,49 @@
 
 package pt.ipp.isep.dei.esoft.project.application.controller.authorization;
 
+import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
+import pt.ipp.isep.dei.esoft.project.domain.TeamProposal;
+import pt.ipp.isep.dei.esoft.project.repository.CollaboratorRepository;
+import pt.ipp.isep.dei.esoft.project.repository.Repositories;
+import pt.ipp.isep.dei.esoft.project.repository.TeamProposalRepository;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class GenerateTeamProposalController {
 
-    /**
-     * Generates a team proposal with random skills.
-     *
-     * @param minTeamSize The minimum size of the team.
-     * @param maxTeamSize The maximum size of the team.
-     * @param skills      The array of skills to be included in the proposal.
-     * @return A string representing the generated team proposal.
-     * @throws IllegalArgumentException if the parameters are invalid.
-     */
-    public String generateTeamProposal(int minTeamSize, int maxTeamSize, String[] skills) {
-        if (minTeamSize <= 0 || minTeamSize > maxTeamSize || minTeamSize > skills.length) {
-            throw new IllegalArgumentException("Invalid parameters for generating team proposal.");
-        }
+    private final TeamProposalRepository teamProposalRepository;
+    private final CollaboratorRepository collaboratorRepository;
 
-        Random random = new Random();
-        int teamSize = random.nextInt(maxTeamSize - minTeamSize + 1) + minTeamSize;
+    public GenerateTeamProposalController() {
+        this.teamProposalRepository = Repositories.getInstance().getTeamProposalRepository();
+        this.collaboratorRepository = Repositories.getInstance().getCollaboratorRepository();
+    }
 
-        StringBuilder teamProposal = new StringBuilder();
-        for (int i = 0; i < teamSize; i++) {
-            int randomSkillIndex = random.nextInt(skills.length);
-            teamProposal.append(skills[randomSkillIndex]);
-            if (i < teamSize - 1) {
-                teamProposal.append("; "); // Add semicolon to separate skills
+    public boolean generateTeamProposal(int maxSize, int minSize, String[] requiredSkills) {
+        List<Collaborator> collaborators = collaboratorRepository.getCollaborators();
+
+        // Filtra colaboradores que possuem as habilidades necessárias
+        List<Collaborator> matchingCollaborators = new ArrayList<>();
+        for (Collaborator collaborator : collaborators) {
+            if (collaborator.hasSkills(requiredSkills)) {
+                matchingCollaborators.add(collaborator);
             }
         }
 
-        return teamProposal.toString();
+        if (matchingCollaborators.size() >= minSize && matchingCollaborators.size() <= maxSize) {
+            TeamProposal teamProposal = new TeamProposal(maxSize, minSize, List.of(requiredSkills), matchingCollaborators);
+            teamProposalRepository.add(teamProposal);
+            return true;
+        }
+        return false;
+    }
+
+    public List<TeamProposal> getAllTeamProposals() {
+        return teamProposalRepository.getAll();
     }
 }
+
 
 

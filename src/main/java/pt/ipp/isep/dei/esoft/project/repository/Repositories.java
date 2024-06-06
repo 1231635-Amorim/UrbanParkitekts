@@ -9,6 +9,8 @@ public class Repositories {
     private final SkillsRepository skillsrepository;
     private Object SkillsRepository;
     private final JobRepository jobrepository;
+    private final CollaboratorRepository collaboratorRepository;
+    private final TeamProposalRepository teamProposalRepository;
 
     private Repositories() {
         organizationRepository = new OrganizationRepository();
@@ -16,6 +18,8 @@ public class Repositories {
         authenticationRepository = new AuthenticationRepository();
         skillsrepository = new SkillsRepository();
         jobrepository = new JobRepository();
+        collaboratorRepository = new CollaboratorRepository();
+        teamProposalRepository = new TeamProposalRepository();
     }
 
     public static Repositories getInstance() {
@@ -42,4 +46,8 @@ public class Repositories {
     public SkillsRepository getSkillRepository() { return (SkillsRepository) SkillsRepository;
     }
     public JobRepository getJobrepository(){return (JobRepository) jobrepository;}
+
+    public TeamProposalRepository getTeamProposalRepository() {return teamProposalRepository;}
+
+    public CollaboratorRepository getCollaboratorRepository() { return collaboratorRepository;}
 }
