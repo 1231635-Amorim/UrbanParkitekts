@@ -15,6 +15,7 @@ public class AuthenticationController {
     public static final String ROLE_EMPLOYEE = "EMPLOYEE";
     public static final String ROLE_HUMANRESOURCESMANAGER = "HUMAN RESOURCES MANAGER";
     public static final String ROLE_GSM = "Green Space Manager";
+    public static final String ROLE_COLLABORATOR = "Collaborator";
 
     //private final ApplicationSession applicationSession;
     private final AuthenticationRepository authenticationRepository;

@@ -1,177 +1,255 @@
-/**
- * The Collaborator class represents a collaborator in the system.
- * It contains information such as name, birth date, address, contact details, identification, job, and password.
- * Collaborators are associated with specific job positions.
- * They are used within the system to assign tasks and manage projects.
- *
- * @author [João Amorim]
- */
-
 package pt.ipp.isep.dei.esoft.project.domain;
 
-import java.util.Date;
-import java.util.List;
+import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
+import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
+import pt.ipp.isep.dei.esoft.project.repository.Repositories;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * The {@code Collaborator} class represents a collaborator entity in the system.
+ * It contains information about a collaborator such as name, birth date, admission date, contact details, and job.
+ */
 public class Collaborator {
+
     private String name;
-    private Date birthDate;
-    private Date admissionDate;
+    private LocalDate birthdayDate;
+    private LocalDate admissionDate;
     private String address;
-    private String mobile;
+    private String phoneNumber;
     private String email;
-    private String taxpayerNumber;
-    private String idDocType;
-    private String idNumber;
-    private Job job;
-    private String password;
-    private List<String> skills;
+    private int taxpayerNumber;
+    private long BINumber;
+    private String job;
+    private List<Skill> skills;
 
     /**
-     * Constructs a Collaborator object with the specified information.
+     * Constructs a new {@code Collaborator} object with the specified attributes.
      *
      * @param name           The name of the collaborator.
-     * @param birthDate      The birth date of the collaborator.
+     * @param birthdayDate   The birthdate of the collaborator.
      * @param admissionDate  The admission date of the collaborator.
      * @param address        The address of the collaborator.
-     * @param mobile         The mobile phone number of the collaborator.
+     * @param phoneNumber    The phone number of the collaborator.
      * @param email          The email address of the collaborator.
      * @param taxpayerNumber The taxpayer number of the collaborator.
-     * @param idDocType      The type of identification document.
-     * @param idNumber       The identification number.
+     * @param BINumber       The BI (Identity Card) number of the collaborator.
      * @param job            The job position of the collaborator.
-     * @param password       The password of the collaborator.
+     * @throws IllegalArgumentException If any of the input parameters are invalid.
      */
-    public Collaborator(String name, Date birthDate, Date admissionDate, String address, String mobile, String email,
-                        String taxpayerNumber, String idDocType, String idNumber, Job job, String password) {
+    public Collaborator(String name, LocalDate birthdayDate, LocalDate admissionDate,
+                        String address, String phoneNumber, String email,
+                        int taxpayerNumber, long BINumber, String job) throws IllegalArgumentException {
+        validateInputs(name, birthdayDate, admissionDate, address, phoneNumber, email, taxpayerNumber, BINumber, job);
         this.name = name;
-        this.birthDate = birthDate;
+        this.birthdayDate = birthdayDate;
         this.admissionDate = admissionDate;
         this.address = address;
-        this.mobile = mobile;
+        this.phoneNumber = phoneNumber;
         this.email = email;
         this.taxpayerNumber = taxpayerNumber;
-        this.idDocType = idDocType;
-        this.idNumber = idNumber;
+        this.BINumber = BINumber;
         this.job = job;
-        this.password = password;
-    }
-    public Collaborator(String email){
-        this.email = email;
+        this.skills = new ArrayList<>();
+
+        AuthenticationRepository authenticationRepository = Repositories.getInstance().getAuthenticationRepository();
+        authenticationRepository.addUserRole(AuthenticationController.ROLE_COLLABORATOR, AuthenticationController.ROLE_COLLABORATOR);
+        authenticationRepository.addUserWithRole(name, email, String.valueOf(BINumber), AuthenticationController.ROLE_COLLABORATOR);
     }
 
-    // Getters and Setters
+    public void addSkill(Skill skill) {
+        skills.add(skill);
+    }
 
+    public List<Skill> getSkills() {
+        return new ArrayList<>(skills);
+    }
+
+    /**
+     * Validates the input parameters for creating a collaborator.
+     * Throws an exception if any parameter is invalid.
+     */
+    private void validateInputs(String name, LocalDate birthdayDate, LocalDate admissionDate,
+                                String address, String phoneNumber, String email,
+                                int taxpayerNumber, long BINumber, String job) throws IllegalArgumentException {
+        if (name == null || name.trim().isEmpty()) {
+            System.out.println("Name must be provided.");
+            return; // Exit method, allowing the user to correct the input
+        }
+
+        if (birthdayDate == null) {
+            System.out.println("Birthday date must be provided.");
+            return;
+        }
+
+        if (admissionDate == null) {
+            System.out.println("Admission date must be provided.");
+            return;
+        }
+
+        if (address == null || address.trim().isEmpty()) {
+            System.out.println("Address must be provided.");
+            return;
+        }
+
+        if (phoneNumber == null || !phoneNumber.matches("\\d{9}")) {
+            System.out.println("Phone number must be 9 digits.");
+            return;
+        }
+
+        if (email == null || !email.matches("\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b")) {
+            System.out.println("Email must be provided and in a valid format (something@something.something).");
+            return;
+        }
+
+        if (taxpayerNumber <= 0 || String.valueOf(taxpayerNumber).length() != 9) {
+            System.out.println("Taxpayer number must be a positive integer of 9 digits.");
+            return;
+        }
+
+        if (String.valueOf(BINumber).length() != 8) {
+            System.out.println("BI number must be an integer of 8 digits.");
+            return;
+        }
+
+        if (job == null || job.trim().isEmpty()) {
+            System.out.println("Job must be provided.");
+            return;
+        }
+    }
+
+
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     *
+     * @param o The object to compare this instance with.
+     * @return {@code true} if the specified object is equal to this collaborator;
+     *         {@code false} otherwise.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Collaborator that = (Collaborator) o;
+        return taxpayerNumber == that.taxpayerNumber &&
+                BINumber == that.BINumber &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(birthdayDate, that.birthdayDate) &&
+                Objects.equals(admissionDate, that.admissionDate) &&
+                Objects.equals(address, that.address) &&
+                Objects.equals(phoneNumber, that.phoneNumber) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(job, that.job);
+    }
+
+
+
+
+
+    /**
+     * Creates and returns a new instance of the Collaborator class with the same attribute values as this instance.
+     *
+     * @return A new Collaborator object with the same attribute values as this instance.
+     */
+    @Override
+    public Collaborator clone() {
+        return new Collaborator(name, birthdayDate, admissionDate, address, phoneNumber, email, taxpayerNumber, BINumber,job);
+    }
+
+
+    /**
+     * Returns the name of the collaborator.
+     *
+     * @return The name of the collaborator.
+     */
     public String getName() {
         return name;
     }
 
-
-    public void setName(String name) {
-        this.name = name;
+    /**
+     * Returns the birth date of the collaborator.
+     *
+     * @return The birth date of the collaborator.
+     */
+    public LocalDate getBirthdayDate() {
+        return birthdayDate;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public Date getAdmissionDate() {
+    /**
+     * Returns the admission date of the collaborator.
+     *
+     * @return The admission date of the collaborator.
+     */
+    public LocalDate getAdmissionDate() {
         return admissionDate;
     }
 
-    public void setAdmissionDate(Date admissionDate) {
-        this.admissionDate = admissionDate;
-    }
-
+    /**
+     * Returns the address of the collaborator.
+     *
+     * @return The address of the collaborator.
+     */
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    /**
+     * Returns the phone number of the collaborator.
+     *
+     * @return The phone number of the collaborator.
+     */
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
+    /**
+     * Returns the email address of the collaborator.
+     *
+     * @return The email address of the collaborator.
+     */
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTaxpayerNumber() {
+    /**
+     * Returns the taxpayer number of the collaborator.
+     *
+     * @return The taxpayer number of the collaborator.
+     */
+    public int getTaxpayerNumber() {
         return taxpayerNumber;
     }
 
-    public void setTaxpayerNumber(String taxpayerNumber) {
-        this.taxpayerNumber = taxpayerNumber;
+    /**
+     * Returns the BI (Identity Card) number of the collaborator.
+     *
+     * @return The BI (Identity Card) number of the collaborator.
+     */
+    public long getBINumber() {
+        return BINumber;
     }
 
-    public String getIdDocType() {
-        return idDocType;
-    }
-
-    public void setIdDocType(String idDocType) {
-        this.idDocType = idDocType;
-    }
-
-    public String getIdNumber() {
-        return idNumber;
-    }
-
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber;
-    }
-
-    public Job getJob() {
+    /**
+     * Returns the job position of the collaborator.
+     *
+     * @return The job position of the collaborator.
+     */
+    public String getJob() {
         return job;
     }
 
-    public void setJob(Job job) {
-        this.job = job;
+    public boolean hasSkill(Skill skill) {
+        return skills.contains(skill);
     }
-
-    public String getPassword() {
-        return password;
+    public void removeSkill(Skill skill) {
+        skills.remove(skill);
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    // toString method
-
     @Override
     public String toString() {
-        return "Collaborator{" +
-                "name='" + name + '\'' +
-                ", birthDate=" + birthDate +
-                ", admissionDate=" + admissionDate +
-                ", address='" + address + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", email='" + email + '\'' +
-                ", taxpayerNumber='" + taxpayerNumber + '\'' +
-                ", idDocType='" + idDocType + '\'' +
-                ", idNumber='" + idNumber + '\'' +
-                ", job=" + job +
-                ", password='" + password + '\'' +
-                '}';
+        return name;
     }
 
-    public void setSkills(List<String> skills) {
-        this.skills = skills;
-    }
-    public String getCollaboratorByEmail(String email) {return email;
-    }
 }

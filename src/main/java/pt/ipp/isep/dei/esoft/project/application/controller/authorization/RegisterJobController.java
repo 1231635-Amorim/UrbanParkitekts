@@ -13,6 +13,7 @@ import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.repository.JobRepository;
 
 import java.util.regex.Pattern;
+import java.util.List;
 
 public class RegisterJobController {
 
@@ -46,6 +47,15 @@ public class RegisterJobController {
         Job newJob = new Job(name);
         jobRepository.add(newJob);
         return true;
+    }
+
+    /**
+     * Retrieves the list of all registered job positions.
+     *
+     * @return The list of registered job positions.
+     */
+    public static List<Job> getJobList() {
+        return jobRepository.getAllJobs();
     }
 
     /**

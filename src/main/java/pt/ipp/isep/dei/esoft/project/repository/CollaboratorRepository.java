@@ -56,11 +56,31 @@ public class CollaboratorRepository {
         return List.copyOf(collaborators);
     }
 
+    /**
+     * Checks if the provided taxpayer number is already associated with another collaborator.
+     *
+     * @param taxpayerNumber The taxpayer number to check.
+     * @return True if the taxpayer number is duplicate, false otherwise.
+     */
+    public boolean isTaxpayerNumberDuplicate(int taxpayerNumber) {
+        return collaborators.stream()
+                .anyMatch(collaborator -> collaborator.getTaxpayerNumber() == taxpayerNumber);
+    }
 
+    /**
+     * Checks if the provided identification number is already associated with another collaborator.
+     *
+     * @param biNumber The identification number to check.
+     * @return True if the identification number is duplicate, false otherwise.
+     */
+    public boolean isBINumberDuplicate(long biNumber) {
+        return collaborators.stream()
+                .anyMatch(collaborator -> collaborator.getBINumber() == biNumber);
+    }
 
     public void updateCollaborator(Collaborator collaborator) {
     }
-    public String getCollaboratorbyName(String name){
+    public static String getCollaboratorbyName(String name){
         return name;
     }
 

@@ -1,4 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.repository;
+import pt.ipp.isep.dei.esoft.project.domain.Skill;
+import pt.ipp.isep.dei.esoft.project.application.session.ApplicationSession;
 
 public class Repositories {
 
@@ -6,16 +8,20 @@ public class Repositories {
     private final OrganizationRepository organizationRepository;
     private final TaskCategoryRepository taskCategoryRepository;
     private final AuthenticationRepository authenticationRepository;
-    private final SkillsRepository skillsrepository;
-    private Object SkillsRepository;
-    private final JobRepository jobrepository;
+    private final JobRepository jobRepository;
+    private final CollaboratorRepository collaboratorRepository;
+    private final SkillsRepository skillsRepository;
+    private final GreenSpaceRepository greenSpaceRepository;
+
 
     private Repositories() {
         organizationRepository = new OrganizationRepository();
         taskCategoryRepository = new TaskCategoryRepository();
         authenticationRepository = new AuthenticationRepository();
-        skillsrepository = new SkillsRepository();
-        jobrepository = new JobRepository();
+        jobRepository = new JobRepository();
+        collaboratorRepository = new CollaboratorRepository();
+        skillsRepository = new SkillsRepository();
+        greenSpaceRepository = new GreenSpaceRepository();
     }
 
     public static Repositories getInstance() {
@@ -39,7 +45,16 @@ public class Repositories {
         return authenticationRepository;
     }
 
-    public SkillsRepository getSkillRepository() { return (SkillsRepository) SkillsRepository;
+    public JobRepository getJobRepository() {
+        return jobRepository;
     }
-    public JobRepository getJobrepository(){return (JobRepository) jobrepository;}
+
+    public CollaboratorRepository getCollaboratorRepository() { return collaboratorRepository; }
+
+    public SkillsRepository getSkillRepository() {
+        return skillsRepository;
+    }
+    public GreenSpaceRepository getGreenSpaceRepository() {
+        return greenSpaceRepository;
+    }
 }

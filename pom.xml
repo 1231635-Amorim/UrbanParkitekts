@@ -12,7 +12,7 @@
     <properties>
         <!-- Java Version Configuration -->
         <java.version>11</java.version>
-
+        <javafx.version>22</javafx.version>
         <!-- Maven Version Configuration -->
         <maven-compiler-plugin>3.10.1</maven-compiler-plugin>
 
@@ -43,6 +43,16 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>22</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>22</version>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit-jupiter}</version>
@@ -70,6 +80,7 @@
             <scope>test</scope>
         </dependency>
 
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -81,11 +92,18 @@
             <artifactId>AuthLib</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <version>4.13.2</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
         </dependency>
 
     </dependencies>
@@ -223,6 +241,17 @@
             <name>lei-soft</name>
             <url>https://repo.repsy.io/mvn/pmaio/lei-soft</url>
         </repository>
+        <repository>
+            <id>central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+        <repository>
+            <id>repsy</id>
+            <name>lei-soft</name>
+            <url>https://repo.repsy.io/mvn/pmaio/lei-soft</url>
+        </repository>
     </repositories>
+
 
 </project>
