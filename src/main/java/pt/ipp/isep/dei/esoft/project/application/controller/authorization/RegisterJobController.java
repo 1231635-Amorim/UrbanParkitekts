@@ -54,7 +54,7 @@ public class RegisterJobController {
      *
      * @return The list of registered job positions.
      */
-    public static List<Job> getJobList() {
+    public List<Job> getJobList() {
         return jobRepository.getAllJobs();
     }
 
