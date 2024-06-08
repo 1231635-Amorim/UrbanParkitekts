@@ -4,10 +4,7 @@ import pt.ipp.isep.dei.esoft.project.domain.Employee;
 import pt.ipp.isep.dei.esoft.project.domain.Organization;
 import pt.ipp.isep.dei.esoft.project.domain.Task;
 import pt.ipp.isep.dei.esoft.project.domain.TaskCategory;
-import pt.ipp.isep.dei.esoft.project.repository.AuthenticationRepository;
-import pt.ipp.isep.dei.esoft.project.repository.OrganizationRepository;
-import pt.ipp.isep.dei.esoft.project.repository.Repositories;
-import pt.ipp.isep.dei.esoft.project.repository.TaskCategoryRepository;
+import pt.ipp.isep.dei.esoft.project.repository.*;
 import pt.isep.lei.esoft.auth.domain.model.Email;
 
 import java.util.List;
@@ -18,7 +15,6 @@ public class CreateTaskController {
     private OrganizationRepository organizationRepository;
     private TaskCategoryRepository taskCategoryRepository;
     private AuthenticationRepository authenticationRepository;
-
 
     //Repository instances are obtained from the Repositories class
     public CreateTaskController() {

@@ -24,7 +24,7 @@ public class Collaborator {
     private int taxpayerNumber;
     private long BINumber;
     private String job;
-    private List<Skill> skills;
+    private List<String> skills;
 
     /**
      * Constructs a new {@code Collaborator} object with the specified attributes.
@@ -53,21 +53,24 @@ public class Collaborator {
         this.taxpayerNumber = taxpayerNumber;
         this.BINumber = BINumber;
         this.job = job;
-        this.skills = new ArrayList<>();
+        this.skills = new ArrayList<String>();
 
         AuthenticationRepository authenticationRepository = Repositories.getInstance().getAuthenticationRepository();
         authenticationRepository.addUserRole(AuthenticationController.ROLE_COLLABORATOR, AuthenticationController.ROLE_COLLABORATOR);
         authenticationRepository.addUserWithRole(name, email, String.valueOf(BINumber), AuthenticationController.ROLE_COLLABORATOR);
     }
 
-    public void addSkill(Skill skill) {
+    public void setSkills(List<String> skills) {
+        this.skills = skills;
+    }
+
+    public void addSkill(String skill) {
         skills.add(skill);
     }
 
-    public List<Skill> getSkills() {
-        return new ArrayList<>(skills);
+    public void removeSkill(Skill skill) {
+        skills.remove(skill);
     }
-
     /**
      * Validates the input parameters for creating a collaborator.
      * Throws an exception if any parameter is invalid.
@@ -170,9 +173,9 @@ public class Collaborator {
     }
 
     /**
-     * Returns the birth date of the collaborator.
+     * Returns the birthDate of the collaborator.
      *
-     * @return The birth date of the collaborator.
+     * @return The birthDate of the collaborator.
      */
     public LocalDate getBirthdayDate() {
         return birthdayDate;
@@ -241,11 +244,19 @@ public class Collaborator {
         return job;
     }
 
-    public boolean hasSkill(Skill skill) {
-        return skills.contains(skill);
-    }
-    public void removeSkill(Skill skill) {
-        skills.remove(skill);
+    public boolean hasSkills(String[] requiredSkills) {
+        List<String> collaboratorSkills = new ArrayList<>();
+        for (String skill : skills) {
+            collaboratorSkills.add(skill);
+        }
+
+        for (String skill : requiredSkills) {
+            if (!collaboratorSkills.contains(skill)) {
+                return false;
+            }
+        }
+
+        return true;
     }
     @Override
     public String toString() {

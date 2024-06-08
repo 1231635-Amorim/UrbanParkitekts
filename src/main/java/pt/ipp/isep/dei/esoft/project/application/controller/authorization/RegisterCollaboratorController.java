@@ -1,13 +1,12 @@
 package pt.ipp.isep.dei.esoft.project.application.controller.authorization;
+
 import java.time.LocalDate;
+import java.util.List;
 
 import pt.ipp.isep.dei.esoft.project.domain.Collaborator;
 import pt.ipp.isep.dei.esoft.project.domain.Job;
 import pt.ipp.isep.dei.esoft.project.repository.CollaboratorRepository;
 import pt.ipp.isep.dei.esoft.project.repository.Repositories;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * The {@code RegisterCollaboratorController} class represents a controller responsible for managing
@@ -32,7 +31,7 @@ public class RegisterCollaboratorController {
      * Adds the collaborator to the repository if it is valid and does not already exist.
      *
      * @param name           The name of the collaborator.
-     * @param birthDate   The birthday date of the collaborator.
+     * @param birthDate      The birthday date of the collaborator.
      * @param admissionDate  The admission date of the collaborator.
      * @param address        The address of the collaborator.
      * @param phoneNumber    The phone number of the collaborator.
@@ -67,7 +66,8 @@ public class RegisterCollaboratorController {
      * @return A list of available jobs.
      */
     public List<Job> getAvailableJobs() {
-        return RegisterJobController.getJobList();
+        RegisterJobController registerJobController = new RegisterJobController();
+        return registerJobController.getJobList();
     }
 
     /**

@@ -31,7 +31,6 @@ public class GenerateTeamProposalController {
     public boolean generateTeamProposal(int maxSize, int minSize, String[] requiredSkills) {
         List<Collaborator> collaborators = collaboratorRepository.getCollaborators();
 
-        // Filtra colaboradores que possuem as habilidades necessárias
         List<Collaborator> matchingCollaborators = new ArrayList<>();
         for (Collaborator collaborator : collaborators) {
             if (collaborator.hasSkills(requiredSkills)) {

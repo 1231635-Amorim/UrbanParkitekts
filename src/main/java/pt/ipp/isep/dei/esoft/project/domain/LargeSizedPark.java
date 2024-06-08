@@ -8,8 +8,8 @@ public class LargeSizedPark extends GreenSpace {
     /**
      * Constructs a new LargeSizedPark with the given name, area, and email.
      *
-     * @param name the name of the park
-     * @param area the area of the park
+     * @param name  the name of the park
+     * @param area  the area of the park
      * @param email the email address of the park
      */
     public LargeSizedPark(String name, double area, String email) {
@@ -19,11 +19,10 @@ public class LargeSizedPark extends GreenSpace {
     /**
      * This method is overridden from the GreenSpace class to display details about a large-sized park.
      *
-     * @return
+     * @return a string containing details about the large-sized park
      */
     @Override
     public String displayDetails() {
-        System.out.println("Large-Sized Park: " + getName() + ", Area: " + getArea() + " sqm");
-        return null;
+        return "Large-Sized Park: " + getName() + ", Area: " + getArea() + " sqm";
     }
 }
