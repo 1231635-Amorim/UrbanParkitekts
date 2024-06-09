@@ -27,14 +27,12 @@ public class AddNewEntryAgendaController {
         this.emailService = new EmailService();
     }
 
-    public void addAgendaEntry(ToDoEntry selectedToDoEntry, String team, String vehiclesEquipment, String timeInterval, LocalDate date, String status) {
-        if (toDoList.contains(selectedToDoEntry)) {
-            agendaController.addAgendaEntry(selectedToDoEntry, team, vehiclesEquipment, timeInterval, date, status);
-            System.out.println("Agenda entry added successfully.");
-        } else {
-            System.out.println("Error: The selected to-do entry does not exist in the to-do list.");
-        }
+    public void addAgendaEntry(String taskDescription, String team, String vehiclesEquipment, String timeInterval, LocalDate date, String status) {
+        ToDoEntry selectedToDoEntry = new ToDoEntry(taskDescription, "user@example.com", true); // Substitua o email do usuário e o status pendente conforme necessário
+        agendaController.addAgendaEntry(selectedToDoEntry, team, vehiclesEquipment, timeInterval, date, status);
     }
+
+
 
     public List<ToDoEntry> getPendingToDoEntries(String userEmail) {
         return toDoList.getPendingEntriesByUserEmail(userEmail);

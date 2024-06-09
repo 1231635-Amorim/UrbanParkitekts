@@ -28,6 +28,9 @@ public class ToDoEntry {
     }
 
     public ToDoEntry(String taskDescription, String userEmail, boolean pending) {
+        this.task = taskDescription;
+        this.userEmail = userEmail;
+        this.pending = pending;
     }
 
 

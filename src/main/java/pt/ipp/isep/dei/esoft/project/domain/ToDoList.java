@@ -11,7 +11,7 @@ public class ToDoList {
     private String greenspace;
     private String status;
     private String userEmail;
-    private List<ToDoEntry> entries; // Add field to store entries
+    private List<ToDoEntry> entries;
 
     /**
      * Constructs a new ToDoList object with parameters.
@@ -23,7 +23,7 @@ public class ToDoList {
         this.greenspace = greenspace;
         this.status = status;
         this.userEmail = userEmail;
-        this.entries = new ArrayList<>(); // Initialize the list
+        this.entries = new ArrayList<>();
     }
 
     /**
@@ -57,6 +57,21 @@ public class ToDoList {
         this.entries = entries;
     }
 
+    /**
+     * Gets an entry in the to-do list based on the description.
+     *
+     * @param description the description of the entry to be found
+     * @return the entry corresponding to the description, or null if not found
+     */
+    public ToDoEntry getEntryByDescription(String description) {
+        for (ToDoEntry entry : entries) {
+            if (entry.getTaskDescription().equals(description)) {
+                return entry;
+            }
+        }
+        return null;
+    }
+
     @Override
     public ToDoList clone() {
         ToDoList clonedList = new ToDoList();
@@ -65,8 +80,6 @@ public class ToDoList {
         }
         return clonedList;
     }
-
-    // Getters and setters for other fields...
 
     public String getTaskDescription() {
         return taskDescription;

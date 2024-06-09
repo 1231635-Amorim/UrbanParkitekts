@@ -3,8 +3,7 @@ package pt.ipp.isep.dei.esoft.project.application.controller.authorization;
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.domain.ToDoEntry;
 import pt.ipp.isep.dei.esoft.project.domain.ToDoList;
-import pt.ipp.isep.dei.esoft.project.repository.*;
-
+import pt.ipp.isep.dei.esoft.project.repository.GreenSpaceRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +11,7 @@ import java.util.List;
 public class ToDoController {
     private ToDoList toDoList;
     private GreenSpaceRepository greenSpaceRepository;
+
     public ToDoController() {
         this.toDoList = new ToDoList();
         this.greenSpaceRepository = new GreenSpaceRepository();
@@ -37,4 +37,8 @@ public class ToDoController {
     public List<GreenSpace> getGreenSpacesByUserEmail(String userEmail) {
         return greenSpaceRepository.getGreenSpacesByUserEmail(userEmail);
     }
+    public ToDoEntry getToDoEntryByDescription(String description) {
+        return toDoList.getEntryByDescription(description);
+    }
+
 }

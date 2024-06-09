@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.application.controller.GUIController.ListAgendaEntriesControllerGUI"
+      alignment="CENTER" spacing="10" style="-fx-background-color: #f0f0f0;">
+    <Label text="All Agenda Entries" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    <ListView fx:id="agendaListView" prefWidth="300" prefHeight="200"/>
+    <Button text="Back" onAction="#handleBack" style="-fx-font-size: 14px;"/>
+</VBox>

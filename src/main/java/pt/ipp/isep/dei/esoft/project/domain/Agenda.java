@@ -1,33 +1,19 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class Agenda {
 
-    private String team;
-    private List<String> equipmentOrVehicles;
-    private AgendaStatus status;
-    public static List<AgendaEntry> entries;
+    private List<AgendaEntry> entries;
 
-
-
-    public Agenda(String team, List<String> equipmentOrVehicles, AgendaStatus status) {
-
-        this.team = team;
-        this.equipmentOrVehicles = equipmentOrVehicles;
-        this.status = status;
-        this.entries = new ArrayList<>();
-
-    }
     public Agenda() {
-
+        this.entries = new ArrayList<>();
     }
 
-
-
-    public static void addEntry(AgendaEntry entry) {
+    public void addEntry(AgendaEntry entry) {
         entries.add(entry);
     }
 
@@ -44,42 +30,21 @@ public class Agenda {
         return null;
     }
 
-    public String getTeam() {
-        return team;
+    public List<ToDoEntry> getEntriesByUserAndGreenSpace(String userEmail, String greenSpaceName) {
+        List<ToDoEntry> userEntries = new ArrayList<>();
+        for (AgendaEntry entry : entries) {
+            ToDoEntry toDoEntry = entry.getToDoEntry();
+            if (toDoEntry.getUserEmail().equals(userEmail) && toDoEntry.getGreenSpaceName().equals(greenSpaceName)) {
+                userEntries.add(toDoEntry);
+            }
+        }
+        return userEntries;
     }
-
-    public List<String> getEquipmentOrVehicles() {
-        return equipmentOrVehicles;
-    }
-
-    public AgendaStatus getStatus() {
-        return status;
-    }
-
-    public void setTeam(String team) { // Adicionado método setTeam
-        this.team = team;
-    }
-
-
-    public Object getUuid() {
-        return null;
-    }
-
-
-
 
     @Override
     public String toString() {
         return "Agenda{" +
-
-                ", team='" + team + '\'' +
-                ", equipmentOrVehicles=" + equipmentOrVehicles +
-                ", status=" + status +
+                "entries=" + entries +
                 '}';
     }
-
-
-
-
-
 }
