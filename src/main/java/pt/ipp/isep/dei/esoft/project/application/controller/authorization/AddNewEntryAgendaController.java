@@ -71,6 +71,14 @@ public class AddNewEntryAgendaController {
             System.out.println("Error: Agenda entry not found.");
         }
     }
+    // Método para enviar mensagem de atribuição para a equipe
+    private void sendAssignmentMessage(String team, AgendaEntry entry) {
+        String subject = "New Assignment: " + entry.getToDoEntry().getTaskDescription();
+        String message = "You have been assigned to a new task: " + entry.getToDoEntry().getTaskDescription();
+        for (String email : team.getMemberEmails()) {
+            emailService.sendEmail(email, subject, message);
+        }
+    }
 }
 
 
