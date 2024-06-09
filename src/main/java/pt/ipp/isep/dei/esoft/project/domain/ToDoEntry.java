@@ -6,8 +6,8 @@ public class ToDoEntry {
     private Long duration;
     private String task;
     private String userEmail; // Adicione o email do usuário
-    private String greenSpaceName; // Adicione o nome do espaço verde
-
+    private String greenSpaceName;// Adicione o nome do espaço verde
+    private boolean pending;
     /**
      * Construtor da classe ToDoEntry
      *
@@ -27,6 +27,8 @@ public class ToDoEntry {
         this.greenSpaceName = greenSpaceName;
     }
 
+    public ToDoEntry(String taskDescription, String userEmail, boolean pending) {
+    }
 
 
     /**
@@ -153,5 +155,12 @@ public class ToDoEntry {
                 "urgency='" + urgency + '\'' +
                 ", associatedGreenSpace=" + associatedGreenSpace.getName() +
                 '}';
+    }
+
+    public boolean isPending() {
+        return pending;
+    }
+
+    public String getTaskDescription() { return task;
     }
 }

@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ToDoList {
     private String taskDescription;
@@ -113,5 +114,16 @@ public class ToDoList {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public boolean contains(ToDoEntry entry) {
+        return entries.contains(entry);
+    }
+
+
+    public List<ToDoEntry> getPendingEntriesByUserEmail(String userEmail) {
+        return entries.stream()
+                .filter(entry -> entry.getUserEmail().equals(userEmail) && entry.isPending())
+                .collect(Collectors.toList());
     }
 }
