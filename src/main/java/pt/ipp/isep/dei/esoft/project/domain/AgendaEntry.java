@@ -13,10 +13,10 @@ public class AgendaEntry {
         private String status;
         private String useremail;
         private boolean pending;
-    private final UUID id;
 
-        public AgendaEntry(ToDoEntry toDoEntry, String vehiclesEquipment, String timeInterval, LocalDate date, String status) {
-            this.id = UUID.randomUUID();
+
+        public AgendaEntry(ToDoEntry toDoEntry, String vehiclesEquipment, String timeInterval, String interval, LocalDate date, String status) {
+
             this.toDoEntry = toDoEntry;
             this.team = team;
             this.vehiclesEquipment = vehiclesEquipment;
@@ -24,6 +24,9 @@ public class AgendaEntry {
             this.date = date;
             this.status = status;
         }
+
+    public AgendaEntry(ToDoEntry toDoEntry, String vehicles, String timeInterval, LocalDate now, String planned) {
+    }
 
     public ToDoEntry getToDoEntry() {
         return toDoEntry;
@@ -72,9 +75,7 @@ public class AgendaEntry {
     public boolean isPending() {
         return pending;
     }
-    public UUID getId() {
-        return id;
-    }
+
 
     public void assignTeam(Team team) {
         this.team = team;

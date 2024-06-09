@@ -21,14 +21,7 @@ public class Agenda {
         return entries;
     }
 
-    public AgendaEntry getEntryById(UUID id) {
-        for (AgendaEntry entry : entries) {
-            if (entry.getId().equals(id)) {
-                return entry;
-            }
-        }
-        return null;
-    }
+
 
     public List<ToDoEntry> getEntriesByUserAndGreenSpace(String userEmail, String greenSpaceName) {
         List<ToDoEntry> userEntries = new ArrayList<>();

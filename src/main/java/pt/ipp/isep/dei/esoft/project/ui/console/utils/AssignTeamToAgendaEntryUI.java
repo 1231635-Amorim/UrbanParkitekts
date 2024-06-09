@@ -60,7 +60,7 @@ public class AssignTeamToAgendaEntryUI implements Runnable {
         private AgendaEntry createAgendaEntry(ToDoEntry toDoEntry) {
             // Criar a entrada na agenda com os detalhes fornecidos
             // ...
-            return new AgendaEntry(toDoEntry, "vehicles", "time interval", LocalDate.now(), "Planned");
+            return new AgendaEntry(toDoEntry, "vehicles", "time interval",  LocalDate.now(), "Planned");
         }
 
 
