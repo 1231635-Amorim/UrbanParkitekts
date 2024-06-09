@@ -56,11 +56,11 @@ public class RegisterGreenSpaceController {
     }
 
     /**
-     * Retrieves a list of all registered green spaces.
+     * Retrieves a list of all registered green spaces sorted by area in descending order.
      *
      * @return a list of GreenSpace objects
      */
     public List<GreenSpace> getAllGreenSpaces() {
-        return greenSpaceRepository.getGreenSpaces();
+        return greenSpaceRepository.getGreenSpacesSorted();
     }
 }

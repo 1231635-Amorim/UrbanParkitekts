@@ -6,11 +6,11 @@ public class Garden extends GreenSpace {
      * Constructs a new Garden with the given name, area, and email.
      *
      * @param name  the name of the garden
-     * @param area  the area of the garden
+     * @param areaInHectares  the area of the garden
      * @param email the email of the garden
      */
-    public Garden(String name, double area, String email) {
-        super(name, area, GreenSpaceType.GARDEN, email);
+    public Garden(String name, double areaInHectares, String email) {
+        super(name, areaInHectares, GreenSpaceType.GARDEN, email);
     }
 
     /**
@@ -20,6 +20,6 @@ public class Garden extends GreenSpace {
      */
     @Override
     public String displayDetails() {
-        return String.format("%s: %s, Area: %.1f hectares", getType(), getName(), getArea());
+        return String.format("%s: %s, Area: %.1f hectares", getType(), getName(), getAreaInHectares());
     }
 }

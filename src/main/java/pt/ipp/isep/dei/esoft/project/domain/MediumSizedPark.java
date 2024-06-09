@@ -25,7 +25,7 @@ public  class MediumSizedPark extends GreenSpace {
     @Override
     public String displayDetails() {
         DecimalFormat df = new DecimalFormat("#0.0");
-        return "Medium-Sized Park: " + getName() + ", Area: " + df.format(getArea()).replace(",", ".") + " sqm";
+        return "Medium-Sized Park: " + getName() + ", Area: " + df.format(getAreaInHectares()).replace(",", ".") + " hectares";
     }
 
 }

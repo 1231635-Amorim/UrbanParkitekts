@@ -33,6 +33,10 @@ public class ToDoEntry {
         this.pending = pending;
     }
 
+    public ToDoEntry(String taskDescription) {
+        this.task = taskDescription;
+    }
+
 
     /**
      * gets the urgency of the entry

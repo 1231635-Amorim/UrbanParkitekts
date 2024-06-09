@@ -33,6 +33,68 @@ public class GreenSpaceRepository {
         }
     }
 
+    public List<GreenSpace> getGreenSpacesSorted() {
+        List<GreenSpace> sortedGreenSpaces;
+        switch (sortingAlgorithm.toUpperCase()) {
+            case "QUICKSORT":
+                sortedGreenSpaces = quickSortByAreaDesc(new ArrayList<>(greenSpaces));
+                break;
+            case "BUBBLESORT":
+                sortedGreenSpaces = bubbleSortByAreaDesc(new ArrayList<>(greenSpaces));
+                break;
+            default:
+                sortedGreenSpaces = new ArrayList<>(greenSpaces);
+                sortedGreenSpaces.sort((gs1, gs2) -> Double.compare(gs2.getAreaInHectares(), gs1.getAreaInHectares())); // Default sorting
+        }
+        return sortedGreenSpaces;
+    }
+
+    private List<GreenSpace> quickSortByAreaDesc(List<GreenSpace> list) {
+        if (list.size() <= 1) {
+            return list;
+        }
+
+        int pivotIndex = list.size() / 2;
+        GreenSpace pivot = list.get(pivotIndex);
+        List<GreenSpace> less = new ArrayList<>();
+        List<GreenSpace> greater = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            if (i == pivotIndex) {
+                continue;
+            }
+            GreenSpace current = list.get(i);
+            if (current.getAreaInHectares() >= pivot.getAreaInHectares()) {
+                greater.add(current);
+            } else {
+                less.add(current);
+            }
+        }
+
+        List<GreenSpace> sorted = new ArrayList<>();
+        sorted.addAll(quickSortByAreaDesc(greater));
+        sorted.add(pivot);
+        sorted.addAll(quickSortByAreaDesc(less));
+        return sorted;
+    }
+
+    private List<GreenSpace> bubbleSortByAreaDesc(List<GreenSpace> list) {
+        boolean swapped;
+        do {
+            swapped = false;
+            for (int i = 0; i < list.size() - 1; i++) {
+                GreenSpace current = list.get(i);
+                GreenSpace next = list.get(i + 1);
+                if (current.getAreaInHectares() < next.getAreaInHectares()) {
+                    list.set(i, next);
+                    list.set(i + 1, current);
+                    swapped = true;
+                }
+            }
+        } while (swapped);
+        return list;
+    }
+
     public void addGreenSpace(GreenSpace greenSpace) {
         if (greenSpace == null) {
             throw new NullPointerException("GreenSpace cannot be null");
