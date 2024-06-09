@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
-public class Garden extends GreenSpace {
+public  class Garden extends GreenSpace {
 
     /**
      * Constructs a new Garden with the given name, area, and email.
@@ -20,6 +20,7 @@ public class Garden extends GreenSpace {
      */
     @Override
     public String displayDetails() {
-        return String.format("%s: %s, Area: %.1f sqm", getType(), getName(), getArea());
+        return String.format("%s: %s, Area: %.1f hectares", getType(), getName(), getAreaInHectares());
     }
+
 }

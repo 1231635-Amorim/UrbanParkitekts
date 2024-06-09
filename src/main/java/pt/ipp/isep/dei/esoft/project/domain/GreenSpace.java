@@ -1,4 +1,6 @@
 package pt.ipp.isep.dei.esoft.project.domain;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -14,6 +16,8 @@ public abstract class GreenSpace {
      * The area of the green space.
      */
     private double area;
+
+    private List<ToDoEntry> toDoList;
 
     /**
      * The type of the green space.
@@ -38,6 +42,15 @@ public abstract class GreenSpace {
         this.area = area;
         this.type = type;
         this.email = email;
+        this.toDoList = new ArrayList<>();
+    }
+
+    public void addToDoEntry(ToDoEntry entry) {
+        toDoList.add(entry);
+    }
+
+    public List<ToDoEntry> getToDoList() {
+        return toDoList;
     }
 
     /**
@@ -132,6 +145,10 @@ public abstract class GreenSpace {
         return email;
     }
 
+    public double getAreaInHectares() {
+        return area / 10000; // 1 hectare = 10,000 square meters
+    }
+
 
     /**
      * This method must be implemented by subclasses to display details about a green space.
@@ -152,5 +169,12 @@ public abstract class GreenSpace {
     @Override
     public int hashCode() {
         return Objects.hash(name, area);
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + (name != null ? name : "N/A") +
+                ", Area: " + area +
+                ", Email: " + (email != null ? email : "N/A");
     }
 }

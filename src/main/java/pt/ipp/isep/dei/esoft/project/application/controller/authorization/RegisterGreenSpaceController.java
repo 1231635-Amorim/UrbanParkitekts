@@ -9,46 +9,36 @@ import pt.ipp.isep.dei.esoft.project.repository.GreenSpaceRepository;
 
 import java.util.List;
 
-
-/**
- * Controller class responsible for registering green spaces and retrieving all registered green spaces.
- */
 public class RegisterGreenSpaceController {
 
-    /**
-     * Default constructor.
-     */
+    private GreenSpaceRepository greenSpaceRepository;
+
     public RegisterGreenSpaceController() {
+        this.greenSpaceRepository = new GreenSpaceRepository();
     }
 
-    /**
-     * Registers a new green space based on the provided parameters.
-     *
-     * @param name the name of the green space
-     * @param area the area of the green space
-     * @param type the type of the green space (GARDEN, MEDIUM_SIZED_PARK, LARGE_SIZED_PARK)
-     * @param email the email of the user who registered the green space
-     * @return the registered green space object
-     */
-    public static GreenSpace registerGreenSpace(String name, double area, GreenSpaceType type, String email) {
+    public GreenSpace registerGreenSpace(String name, double area, GreenSpaceType type, String email) {
+        GreenSpace greenSpace;
+
         switch (type) {
             case GARDEN:
-                return new Garden(name, area, email);
+                greenSpace = new Garden(name, area, email);
+                break;
             case MEDIUM_SIZED_PARK:
-                return new MediumSizedPark(name, area, email);
+                greenSpace = new MediumSizedPark(name, area, email);
+                break;
             case LARGE_SIZED_PARK:
-                return new LargeSizedPark(name, area, email);
+                greenSpace = new LargeSizedPark(name, area, email);
+                break;
             default:
                 throw new IllegalArgumentException("Invalid Green Space Type");
         }
+
+        greenSpaceRepository.addGreenSpace(greenSpace);
+        return greenSpace;
     }
 
-    /**
-     * Retrieves a list of all registered green spaces.
-     *
-     * @return a list of all registered green spaces
-     */
-    public static List<GreenSpace> getAllGreenSpaces() {
-        return GreenSpaceRepository.getGreenSpaces();
+    public List<GreenSpace> getAllGreenSpaces() {
+        return greenSpaceRepository.getGreenSpaces();
     }
 }

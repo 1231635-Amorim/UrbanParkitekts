@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 /**
  * This class extends the GreenSpace class and represents a large-sized park.
  */
-public class LargeSizedPark extends GreenSpace {
+public  class LargeSizedPark extends GreenSpace {
 
     /**
      * Constructs a new LargeSizedPark with the given name, area, and email.
@@ -23,6 +23,7 @@ public class LargeSizedPark extends GreenSpace {
      */
     @Override
     public String displayDetails() {
-        return "Large-Sized Park: " + getName() + ", Area: " + getArea() + " sqm";
+        return "Large-Sized Park: " + getName() + ", Area: " + getAreaInHectares() + " hectares";
     }
+
 }

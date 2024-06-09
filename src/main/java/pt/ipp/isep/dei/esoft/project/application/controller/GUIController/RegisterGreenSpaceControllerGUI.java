@@ -6,8 +6,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import pt.ipp.isep.dei.esoft.project.domain.GreenSpace;
 import pt.ipp.isep.dei.esoft.project.domain.GreenSpaceType;
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.RegisterGreenSpaceController;
+import pt.ipp.isep.dei.esoft.project.repository.GreenSpaceRepository;
 import pt.ipp.isep.dei.esoft.project.ui.gui.ControllerWithEmail;
 import pt.ipp.isep.dei.esoft.project.ui.gui.SceneSwitcher;
 
@@ -26,9 +28,14 @@ public class RegisterGreenSpaceControllerGUI implements ControllerWithEmail {
 
     private String email;
 
+    private RegisterGreenSpaceController registerGreenSpaceController;
+
+    private GreenSpaceRepository greenSpaceRepository = new GreenSpaceRepository();
+
     @Override
     public void setUserEmail(String email) {
         this.email = email;
+        this.registerGreenSpaceController = new RegisterGreenSpaceController();
     }
 
     public String getUserEmail() {
@@ -64,8 +71,13 @@ public class RegisterGreenSpaceControllerGUI implements ControllerWithEmail {
         double area = Double.parseDouble(areaText);
         GreenSpaceType greenSpaceType = mapToGreenSpaceType(selectedType);
 
-        RegisterGreenSpaceController.registerGreenSpace(name, area, greenSpaceType, email);
+        // Register the new green space
+        GreenSpace newGreenSpace = registerGreenSpaceController.registerGreenSpace(name, area, greenSpaceType, email);
 
+        // Add the new green space to the repository
+        greenSpaceRepository.addGreenSpace(newGreenSpace);
+
+        // Show success message
         showAlert(Alert.AlertType.INFORMATION, "Success", "Green space registered successfully.");
     }
 

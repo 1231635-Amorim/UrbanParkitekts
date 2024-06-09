@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.esoft.project.domain;
 /**
  * This class represents a Medium-Sized Park, which is a type of GreenSpace.
  */
-public class MediumSizedPark extends GreenSpace {
+public  class MediumSizedPark extends GreenSpace {
 
     /**
      * Constructs a MediumSizedPark object with the specified name, area, and email.
@@ -23,7 +23,8 @@ public class MediumSizedPark extends GreenSpace {
      */
     @Override
     public String displayDetails() {
-        System.out.println("Medium-Sized Park: " + getName() + ", Area: " + getArea() + " sqm");
+        System.out.println("Medium-Sized Park: " + getName() + ", Area: " + getAreaInHectares() + " hectares");
         return null;
     }
+
 }
