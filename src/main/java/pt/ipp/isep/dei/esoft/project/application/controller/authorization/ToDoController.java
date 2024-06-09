@@ -28,11 +28,10 @@ public class ToDoController {
      * @param duration
      */
 
-    public void addToDoEntry(String urgency, GreenSpace greenSpace, Long duration,String task) {
-        ToDoEntry entry = new ToDoEntry(urgency, greenSpace, duration,task);
+    public void addToDoEntry(String urgency, GreenSpace greenSpace, Long duration, String task, String userEmail, String greenSpaceName) {
+        ToDoEntry entry = new ToDoEntry(urgency, greenSpace, duration, task, userEmail, greenSpaceName);
         toDoList.addEntry(entry);
     }
-
     /**
      * get all the entries
      *

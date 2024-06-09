@@ -16,7 +16,7 @@ public class ToDoEntryTest {
     @Before
     public void setUp() {
         greenSpace = new Garden("Test Garden", 100.0, "user@example.com");
-        toDoEntry = new ToDoEntry("High", greenSpace, 2L);
+        toDoEntry = new ToDoEntry("High", greenSpace, 2L, "Task", "user@example.com", "Test Garden");
     }
 
     @After

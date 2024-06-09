@@ -5,22 +5,29 @@ public class ToDoEntry {
     private GreenSpace associatedGreenSpace;
     private Long duration;
     private String task;
-
+    private String userEmail; // Adicione o email do usuário
+    private String greenSpaceName; // Adicione o nome do espaço verde
 
     /**
-     * default constructor
+     * Construtor da classe ToDoEntry
      *
-     * @param urgency
-     * @param associatedGreenSpace
-     * @param duration
+     * @param urgency             A urgência da tarefa
+     * @param associatedGreenSpace O espaço verde associado à tarefa
+     * @param duration            A duração da tarefa
+     * @param task                A descrição da tarefa
+     * @param userEmail           O email do usuário associado à tarefa
+     * @param greenSpaceName      O nome do espaço verde associado à tarefa
      */
-
-    public ToDoEntry(String urgency, GreenSpace associatedGreenSpace, Long duration, String task) {
+    public ToDoEntry(String urgency, GreenSpace associatedGreenSpace, Long duration, String task, String userEmail, String greenSpaceName) {
         this.urgency = urgency;
         this.associatedGreenSpace = associatedGreenSpace;
         this.duration = duration;
-        this.task=task;
+        this.task = task;
+        this.userEmail = userEmail;
+        this.greenSpaceName = greenSpaceName;
     }
+
+
 
     /**
      * gets the urgency of the entry
@@ -57,7 +64,23 @@ public class ToDoEntry {
      *
      * @return the duaration
      */
+    /**
+     * Sets the email of the user associated with the task.
+     *
+     * @param userEmail The user email to set.
+     */
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 
+    /**
+     * Sets the name of the green space associated with the task.
+     *
+     * @param greenSpaceName The green space name to set.
+     */
+    public void setGreenSpaceName(String greenSpaceName) {
+        this.greenSpaceName = greenSpaceName;
+    }
     public Long getDuration() {
         return duration;
     }
@@ -88,6 +111,25 @@ public class ToDoEntry {
 
     public void setTask(String task){
         this.task=task;
+    }
+
+
+    /**
+     * Obtém o email do usuário associado à tarefa.
+     *
+     * @return O email do usuário
+     */
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    /**
+     * Obtém o nome do espaço verde associado à tarefa.
+     *
+     * @return O nome do espaço verde
+     */
+    public String getGreenSpaceName() {
+        return greenSpaceName;
     }
 
     /**

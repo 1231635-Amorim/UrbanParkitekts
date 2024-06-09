@@ -29,7 +29,7 @@ public class ToDoListTest {
 
     @Test
     public void testAddEntry() {
-        ToDoEntry toDoEntry = new ToDoEntry("High", greenSpace, 2L);
+        ToDoEntry toDoEntry = new ToDoEntry("High", greenSpace, 2L, "task1", "user@example.com", "Test Garden");
         toDoList.addEntry(toDoEntry);
         List<ToDoEntry> entries = toDoList.getEntries();
         assertEquals(1, entries.size());
@@ -38,8 +38,8 @@ public class ToDoListTest {
 
     @Test
     public void testGetEntries() {
-        ToDoEntry toDoEntry1 = new ToDoEntry("High", greenSpace, 2L);
-        ToDoEntry toDoEntry2 = new ToDoEntry("Medium", greenSpace, 3L);
+        ToDoEntry toDoEntry1 = new ToDoEntry("High", greenSpace, 2L, "task1", "user@example.com", "Test Garden");
+        ToDoEntry toDoEntry2 = new ToDoEntry("Medium", greenSpace, 3L, "task2", "user@example.com", "Test Garden");
         toDoList.addEntry(toDoEntry1);
         toDoList.addEntry(toDoEntry2);
         List<ToDoEntry> entries = toDoList.getEntries();
@@ -51,8 +51,8 @@ public class ToDoListTest {
     @Test
     public void testSetEntries() {
         List<ToDoEntry> newEntries = new ArrayList<>();
-        ToDoEntry toDoEntry1 = new ToDoEntry("High", greenSpace, 2L);
-        ToDoEntry toDoEntry2 = new ToDoEntry("Medium", greenSpace, 3L);
+        ToDoEntry toDoEntry1 = new ToDoEntry("High", greenSpace, 2L, "task1", "user@example.com", "Test Garden");
+        ToDoEntry toDoEntry2 = new ToDoEntry("Medium", greenSpace, 3L, "task2", "user@example.com", "Test Garden");
         newEntries.add(toDoEntry1);
         newEntries.add(toDoEntry2);
         toDoList.setEntries(newEntries);
@@ -78,7 +78,7 @@ public class ToDoListTest {
 
     @Test
     public void testAddEntryMultipleTimes() {
-        ToDoEntry toDoEntry = new ToDoEntry("High", greenSpace, 2L);
+        ToDoEntry toDoEntry = new ToDoEntry("High", greenSpace, 2L, "task1", "user@example.com", "Test Garden");
         toDoList.addEntry(toDoEntry);
         toDoList.addEntry(toDoEntry);
         List<ToDoEntry> entries = toDoList.getEntries();
@@ -96,7 +96,7 @@ public class ToDoListTest {
     @Test
     public void testSetEntriesWithNull() {
         List<ToDoEntry> entries = new ArrayList<>();
-        entries.add(new ToDoEntry("High", greenSpace, 2L));
+        entries.add(new ToDoEntry("High", greenSpace, 2L, "task1", "user@example.com", "Test Garden"));
         toDoList.setEntries(entries);
         toDoList.setEntries(null);
         assertNotNull(toDoList.getEntries());

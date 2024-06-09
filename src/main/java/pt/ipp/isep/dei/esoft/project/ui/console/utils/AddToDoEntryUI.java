@@ -49,7 +49,7 @@ public class AddToDoEntryUI implements Runnable {
         }
 
         GreenSpace selectedGreenSpace = greenSpaces.get(greenSpaceChoice - 1);
-        controller.addToDoEntry(urgency, selectedGreenSpace, duration,task);
+        controller.addToDoEntry(urgency, selectedGreenSpace, duration, task, userEmail, selectedGreenSpace.getName());
         System.out.println("To-Do entry added successfully.");
     }
 }
