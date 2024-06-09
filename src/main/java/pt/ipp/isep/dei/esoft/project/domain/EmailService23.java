@@ -9,14 +9,12 @@ public interface EmailService23 {
     public class GmailService implements EmailService23 {
 
         public void sendEmail(String recipient, String subject, String body) {
-            // Implementação para enviar e-mail usando o serviço Gmail
         }
     }
 
     public class DEIEmailService implements EmailService23 {
 
         public void sendEmail(String recipient, String subject, String body) {
-            // Implementação para enviar e-mail usando o serviço DEI
         }
     }
 
