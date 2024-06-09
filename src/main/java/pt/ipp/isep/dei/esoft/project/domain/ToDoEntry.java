@@ -1,22 +1,25 @@
 package pt.ipp.isep.dei.esoft.project.domain;
 
+/**
+ * Represents a ToDoEntry in the system.
+ */
 public class ToDoEntry {
     private String urgency;
     private GreenSpace associatedGreenSpace;
     private Long duration;
     private String task;
-    private String userEmail; // Adicione o email do usuário
-    private String greenSpaceName; // Adicione o nome do espaço verde
+    private String userEmail;
+    private String greenSpaceName;
 
     /**
-     * Construtor da classe ToDoEntry
+     * Constructs a new ToDoEntry object with the given parameters.
      *
-     * @param urgency             A urgência da tarefa
-     * @param associatedGreenSpace O espaço verde associado à tarefa
-     * @param duration            A duração da tarefa
-     * @param task                A descrição da tarefa
-     * @param userEmail           O email do usuário associado à tarefa
-     * @param greenSpaceName      O nome do espaço verde associado à tarefa
+     * @param urgency             The urgency level of the task.
+     * @param associatedGreenSpace The associated GreenSpace object.
+     * @param duration            The duration of the task.
+     * @param task                The description of the task.
+     * @param userEmail           The email of the user associated with the task.
+     * @param greenSpaceName      The name of the green space associated with the task.
      */
     public ToDoEntry(String urgency, GreenSpace associatedGreenSpace, Long duration, String task, String userEmail, String greenSpaceName) {
         this.urgency = urgency;
@@ -27,47 +30,93 @@ public class ToDoEntry {
         this.greenSpaceName = greenSpaceName;
     }
 
-
+    // Getters and Setters
 
     /**
-     * gets the urgency of the entry
+     * Retrieves the urgency level of the task.
      *
-     * @return the urgency
+     * @return The urgency level.
      */
-
     public String getUrgency() {
         return urgency;
     }
 
     /**
-     * gets the urgency of the entry
+     * Retrieves the description of the task.
      *
-     * @return the urgency
+     * @return The task description.
      */
-
-    public  String getTask(){
+    public String getTask() {
         return task;
     }
 
     /**
-     * gets the green space associated with the entry
+     * Retrieves the associated GreenSpace object.
      *
-     * @return the green space associated with the entry
+     * @return The associated GreenSpace.
      */
-
     public GreenSpace getAssociatedGreenSpace() {
         return associatedGreenSpace;
     }
 
     /**
-     * gets the duration of the entry
+     * Retrieves the duration of the task.
      *
-     * @return the duaration
+     * @return The task duration.
      */
+    public Long getDuration() {
+        return duration;
+    }
+
+    /**
+     * Sets the urgency level of the task.
+     *
+     * @param urgency The urgency level to set.
+     */
+    public void setUrgency(String urgency) {
+        this.urgency = urgency;
+    }
+
+    /**
+     * Sets the duration of the task.
+     *
+     * @param duration The duration to set.
+     */
+    public void setDuration(Long duration) {
+        this.duration = duration;
+    }
+
+    /**
+     * Sets the description of the task.
+     *
+     * @param task The task description to set.
+     */
+    public void setTask(String task) {
+        this.task = task;
+    }
+
+    /**
+     * Retrieves the email of the user associated with the task.
+     *
+     * @return The user's email.
+     */
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    /**
+     * Retrieves the name of the green space associated with the task.
+     *
+     * @return The green space name.
+     */
+    public String getGreenSpaceName() {
+        return greenSpaceName;
+    }
+
     /**
      * Sets the email of the user associated with the task.
      *
-     * @param userEmail The user email to set.
+     * @param userEmail The user's email to set.
      */
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
@@ -81,77 +130,25 @@ public class ToDoEntry {
     public void setGreenSpaceName(String greenSpaceName) {
         this.greenSpaceName = greenSpaceName;
     }
-    public Long getDuration() {
-        return duration;
-    }
 
     /**
-     * sets the urgrncy
+     * Sets the associated GreenSpace object.
      *
-     * @param urgency
+     * @param associatedGreenSpace The GreenSpace to set.
      */
-
-    public void setUrgency(String urgency){
-        this.urgency =urgency;
+    public void setAssociatedGreenSpace(GreenSpace associatedGreenSpace) {
+        this.associatedGreenSpace = associatedGreenSpace;
     }
-
-    /**
-     * sets the duration
-     * @param duration
-     */
-
-    public void setDuration(Long duration){
-        this.duration =duration;
-    }
-
-    /**
-     * sets the duration
-     * @param
-     */
-
-    public void setTask(String task){
-        this.task=task;
-    }
-
-
-    /**
-     * Obtém o email do usuário associado à tarefa.
-     *
-     * @return O email do usuário
-     */
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    /**
-     * Obtém o nome do espaço verde associado à tarefa.
-     *
-     * @return O nome do espaço verde
-     */
-    public String getGreenSpaceName() {
-        return greenSpaceName;
-    }
-
-    /**
-     * sets the associated green space
-     * @param associatedGreenSpace
-     */
-
-    public void setAssociatedGreenSpace(GreenSpace associatedGreenSpace){
-        this.associatedGreenSpace =associatedGreenSpace;
-    }
-
-    /**
-     * method for the user to enter the details
-     * @return
-     */
 
     @Override
     public String toString() {
         return "ToDoEntry{" +
-                "task=" + task + '\'' +
-                "urgency='" + urgency + '\'' +
+                "task='" + task + '\'' +
+                ", urgency='" + urgency + '\'' +
                 ", associatedGreenSpace=" + associatedGreenSpace.getName() +
+                ", duration=" + duration +
+                ", userEmail='" + userEmail + '\'' +
+                ", greenSpaceName='" + greenSpaceName + '\'' +
                 '}';
     }
 }

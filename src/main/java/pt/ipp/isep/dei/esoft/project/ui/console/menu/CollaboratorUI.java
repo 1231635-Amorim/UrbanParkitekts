@@ -32,7 +32,6 @@ public class CollaboratorUI implements Runnable {
     public void run() {
         List<MenuItem> options = new ArrayList<>();
         options.add(new MenuItem("Consult my tasks", new DisplayTasksUI(userEmail)));
-        options.add(new MenuItem("Register a new green space", new RegisterGreenSpaceUI(userEmail)));
 
         int option;
         do {

@@ -11,9 +11,9 @@
       fx:controller="pt.ipp.isep.dei.esoft.project.application.controller.GUIController.ListGreenSpacesControllerGUI">
 
     <children>
-        <ChoiceBox fx:id="sortingAlgorithmChoiceBox" VBox.vgrow="NEVER" />
-        <ListView fx:id="greenSpaceListView" VBox.vgrow="ALWAYS" />
-        <Button text="Back" onAction="#handleBack" />
-        <Button text="Update Sorting Algorithm" onAction="#updateSortingAlgorithm" />
+        <ChoiceBox fx:id="sortingAlgorithmChoiceBox" VBox.vgrow="NEVER" prefWidth="200" />
+        <ListView fx:id="greenSpaceListView" VBox.vgrow="ALWAYS" prefHeight="300" prefWidth="400"/>
+        <Button text="Back" onAction="#handleBack" prefWidth="200"/>
+        <Button text="Update Sorting Algorithm" onAction="#updateSortingAlgorithm" prefWidth="200"/>
     </children>
 </VBox>

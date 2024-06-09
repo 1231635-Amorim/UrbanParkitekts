@@ -80,7 +80,7 @@ public class Collaborator {
                                 int taxpayerNumber, long BINumber, String job) throws IllegalArgumentException {
         if (name == null || name.trim().isEmpty()) {
             System.out.println("Name must be provided.");
-            return; // Exit method, allowing the user to correct the input
+            return;
         }
 
         if (birthdayDate == null) {

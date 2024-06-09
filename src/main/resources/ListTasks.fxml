@@ -14,14 +14,14 @@
             prefHeight="400.0" prefWidth="400.0">
 
     <VBox alignment="CENTER" spacing="10">
-        <Label text="Start Date:"/>
-        <TextField fx:id="startDateField" />
-        <Label text="End Date:"/>
-        <TextField fx:id="endDateField"/>
-        <Label text="Task Status:"/>
-        <ComboBox fx:id="statusComboBox"/>
-        <Button text="Display Tasks" onAction="#handleListTasks"/>
-        <TextArea fx:id="taskListArea" prefWidth="400.0" prefHeight="300.0"/>
+        <Label text="Start Date:" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="startDateField" promptText="Start Date" />
+        <Label text="End Date:" style="-fx-font-weight: bold;"/>
+        <TextField fx:id="endDateField" promptText="End Date"/>
+        <Label text="Task Status:" style="-fx-font-weight: bold;"/>
+        <ComboBox fx:id="statusComboBox" promptText="Select Status"/>
+        <Button text="Display Tasks" onAction="#handleListTasks" style="-fx-font-weight: bold;"/>
+        <TextArea fx:id="taskListArea" prefWidth="400.0" prefHeight="200.0" promptText="Task List" style="-fx-font-size: 12px;"/>
     </VBox>
 
 </AnchorPane>

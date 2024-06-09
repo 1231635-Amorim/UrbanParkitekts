@@ -4,14 +4,14 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Label?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.application.controller.GUIController.GsmUIMenuControllerGUI" spacing="10">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="pt.ipp.isep.dei.esoft.project.application.controller.GUIController.GsmUIMenuControllerGUI" spacing="20">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
     <children>
-        <Label fx:id="emailLabel" text="Your Email"/>
+        <Label fx:id="emailLabel" text="Logged in as:"/>
         <!-- Other UI elements -->
     </children>
-    <Button text="Add Green Space" onAction="#handleRegisterGreenSpace"/>
-    <Button text="Show Green Spaces" onAction="#handleListGreenSpaces"/>
+    <Button text="Register Green Space" onAction="#handleRegisterGreenSpace" prefWidth="200" style="-fx-background-color: #007bff; -fx-text-fill: white;"/>
+    <Button text="View Green Spaces" onAction="#handleListGreenSpaces" prefWidth="200" style="-fx-background-color: #28a745; -fx-text-fill: white;"/>
 </VBox>
