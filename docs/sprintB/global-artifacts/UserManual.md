@@ -122,3 +122,4 @@ production of statistical indicators.
 3. Click "Generate Proposal" to automatically generate team proposals.
 4. Review the generated proposals and select the most suitable option.
 
+
