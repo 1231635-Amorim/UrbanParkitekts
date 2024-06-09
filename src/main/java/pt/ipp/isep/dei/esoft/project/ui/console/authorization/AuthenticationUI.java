@@ -1,7 +1,9 @@
+// AuthenticationUI.java
 package pt.ipp.isep.dei.esoft.project.ui.console.authorization;
 
 import pt.ipp.isep.dei.esoft.project.application.controller.authorization.AuthenticationController;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.AdminUI;
+import pt.ipp.isep.dei.esoft.project.ui.console.menu.CollaboratorUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.GreenSpacesManagerUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.HRMUI;
 import pt.ipp.isep.dei.esoft.project.ui.console.menu.MenuItem;
@@ -12,10 +14,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-
-/**
- * @author Paulo Maio pam@isep.ipp.pt
- */
 
 public class AuthenticationUI implements Runnable {
     private final AuthenticationController ctrl;
@@ -44,13 +42,14 @@ public class AuthenticationUI implements Runnable {
         }
         this.logout();
     }
+
     private List<MenuItem> getMenuItemForRoles(String userEmail) {
         List<MenuItem> rolesUI = new ArrayList<>();
         rolesUI.add(new MenuItem(AuthenticationController.ROLE_ADMIN, new AdminUI()));
         rolesUI.add(new MenuItem(AuthenticationController.ROLE_HUMANRESOURCESMANAGER, new HRMUI()));
         rolesUI.add(new MenuItem(AuthenticationController.ROLE_GSM, new GreenSpacesManagerUI(userEmail)));
+        rolesUI.add(new MenuItem(AuthenticationController.ROLE_COLLABORATOR, new CollaboratorUI(userEmail)));
 
-        //TODO: Complete with other user roles and related RoleUI
         return rolesUI;
     }
 

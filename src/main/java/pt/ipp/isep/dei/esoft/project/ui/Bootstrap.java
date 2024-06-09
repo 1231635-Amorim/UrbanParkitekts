@@ -18,7 +18,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Bootstrap implements Runnable {
 
-    //Add some task categories to the repository as bootstrap
     public void run() {
         addTaskCategories();
         addOrganization();
@@ -30,7 +29,6 @@ public class Bootstrap implements Runnable {
 
     private void addOrganization() {
         //TODO: add organizations bootstrap here
-        //get organization repository
         OrganizationRepository organizationRepository = Repositories.getInstance().getOrganizationRepository();
         Organization organization = new Organization("This Company");
         organization.addEmployee(new Employee("admin@this.app"));
@@ -44,7 +42,6 @@ public class Bootstrap implements Runnable {
     private void addTaskCategories() {
         //TODO: add bootstrap Task Categories here
 
-        //get task category repository
         TaskCategoryRepository taskCategoryRepository = Repositories.getInstance().getTaskCategoryRepository();
         taskCategoryRepository.add(new TaskCategory("Analysis"));
         taskCategoryRepository.add(new TaskCategory("Design"));

@@ -36,35 +36,38 @@ public class DisplayTasksUI implements Runnable {
 
         LocalDate startDate;
         LocalDate endDate;
+
+        // Ask for start date
+        while (true) {
+            try {
+                System.out.print("Enter start date (DD-MM-YYYY): ");
+                String startDateStr = scanner.nextLine();
+                startDate = LocalDate.parse(startDateStr, dateFormatter);
+                break;
+            } catch (Exception e) {
+                System.out.println("Invalid date format. Please use DD-MM-YYYY.");
+            }
+        }
+
+        // Ask for end date
+        while (true) {
+            try {
+                System.out.print("Enter end date (DD-MM-YYYY): ");
+                String endDateStr = scanner.nextLine();
+                endDate = LocalDate.parse(endDateStr, dateFormatter);
+                if (endDate.isBefore(startDate)) {
+                    System.out.println("End date must be the same or after the start date.");
+                    continue;
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Invalid date format. Please use DD-MM-YYYY.");
+            }
+        }
+
         String status;
 
         while (true) {
-            while (true) {
-                try {
-                    System.out.print("Enter start date (DD-MM-YYYY): ");
-                    String startDateStr = scanner.nextLine();
-                    startDate = LocalDate.parse(startDateStr, dateFormatter);
-                    break;
-                } catch (Exception e) {
-                    System.out.println("Invalid date format. Please use DD-MM-YYYY.");
-                }
-            }
-
-            while (true) {
-                try {
-                    System.out.print("Enter end date (DD-MM-YYYY): ");
-                    String endDateStr = scanner.nextLine();
-                    endDate = LocalDate.parse(endDateStr, dateFormatter);
-                    if (endDate.isBefore(startDate)) {
-                        System.out.println("End date must be the same or after the start date.");
-                        continue;
-                    }
-                    break;
-                } catch (Exception e) {
-                    System.out.println("Invalid date format. Please use DD-MM-YYYY.");
-                }
-            }
-
             System.out.println("Please select a task status:");
             System.out.println("1. Planned");
             System.out.println("2. Postponed");
@@ -93,12 +96,13 @@ public class DisplayTasksUI implements Runnable {
                     status = "All";
                     break;
                 case 6:
-                    return;
+                    return; // Exit the method and terminate the loop
                 default:
                     System.out.println("Invalid choice. Please try again.");
                     continue;
             }
             DisplayTasks(startDate, endDate, status);
+            break;
         }
     }
 

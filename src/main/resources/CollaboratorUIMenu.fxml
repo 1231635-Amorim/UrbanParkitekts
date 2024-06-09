@@ -4,13 +4,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="148.0" prefWidth="166.0" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.14-internal" fx:controller="pt.ipp.isep.dei.esoft.project.application.controller.GUIController.CollaboratorUIMenuControllerGUI">
+<VBox prefHeight="148.0" prefWidth="250.0" spacing="20" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.14-internal" fx:controller="pt.ipp.isep.dei.esoft.project.application.controller.GUIController.CollaboratorUIMenuControllerGUI">
     <padding>
         <Insets bottom="20" left="20" right="20" top="20" />
     </padding>
     <children>
-        <Label fx:id="emailLabel" prefHeight="18.0" prefWidth="126.0" text="User Email Placeholder" />
-        <Button onAction="#handleListTasks" prefHeight="26.0" prefWidth="188.0" text="Consult tasks" />
-        <Button onAction="#handleChangeTaskStatus" prefHeight="15.0" prefWidth="171.0" text="Mark tasks as Done" />
+        <Label fx:id="emailLabel" prefHeight="18.0" prefWidth="250.0" text="Logged in as:" />
+        <Button onAction="#handleListTasks" prefHeight="40.0" prefWidth="250.0" text="View Tasks" style="-fx-background-color: #007bff; -fx-text-fill: white;"/>
+        <Button onAction="#handleChangeTaskStatus" prefHeight="40.0" prefWidth="250.0" text="Mark Tasks as Done" style="-fx-background-color: #28a745; -fx-text-fill: white;"/>
     </children>
 </VBox>
