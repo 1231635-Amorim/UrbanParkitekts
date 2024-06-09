@@ -71,13 +71,10 @@ public class RegisterGreenSpaceControllerGUI implements ControllerWithEmail {
         double area = Double.parseDouble(areaText);
         GreenSpaceType greenSpaceType = mapToGreenSpaceType(selectedType);
 
-        // Register the new green space
         GreenSpace newGreenSpace = registerGreenSpaceController.registerGreenSpace(name, area, greenSpaceType, email);
 
-        // Add the new green space to the repository
         greenSpaceRepository.addGreenSpace(newGreenSpace);
 
-        // Show success message
         showAlert(Alert.AlertType.INFORMATION, "Success", "Green space registered successfully.");
     }
 

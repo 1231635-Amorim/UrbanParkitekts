@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>pt.isep.ipp.dei.esoft.template</groupId>
-    <artifactId>project-template</artifactId>
+    <groupId>pt.isep.ipp.dei.esoft.project</groupId>
+    <artifactId>MainMenu</artifactId>
     <version>1.0-SNAPSHOT</version>
 
 
@@ -45,13 +45,43 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>22</version>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>22</version>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>11.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>eu.hansolo</groupId>
+            <artifactId>tilesfx</artifactId>
+            <version>11.39</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -80,7 +110,6 @@
             <scope>test</scope>
         </dependency>
 
-
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -105,12 +134,11 @@
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
-
     </dependencies>
     <build>
         <plugins>
 
-            <!-- Required for compiling the project usign maven -->
+            <!-- Required for compiling the project using maven -->
             <plugin><!-- Compiler configuration-->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -198,6 +226,7 @@
                         <param>pt.ipp.isep.dei.esoft.project.*</param>
                     </targetTests>
 
+
                     <excludedClasses>
                         <param>pt.ipp.isep.dei.esoft.project**ui.*</param>
                     </excludedClasses>
@@ -237,19 +266,19 @@
     </build>
     <repositories>
         <repository>
-            <id>repsy</id>
-            <name>lei-soft</name>
+            <id>repsy1</id>
+            <name>lei-soft-repo1</name>
+            <url>https://repo.repsy.io/mvn/pmaio/lei-soft</url>
+        </repository>
+        <repository>
+            <id>repsy2</id>
+            <name>lei-soft-repo2</name>
             <url>https://repo.repsy.io/mvn/pmaio/lei-soft</url>
         </repository>
         <repository>
             <id>central</id>
             <name>Maven Central</name>
             <url>https://repo.maven.apache.org/maven2</url>
-        </repository>
-        <repository>
-            <id>repsy</id>
-            <name>lei-soft</name>
-            <url>https://repo.repsy.io/mvn/pmaio/lei-soft</url>
         </repository>
     </repositories>
 
