@@ -26,6 +26,10 @@ public class AddToDoEntryUI implements Runnable {
         }
 
         System.out.println("\n--- Add To-Do Entry ---");
+        System.out.print("Enter the task of the to-do entry: ");
+        String task = scanner.nextLine();
+
+        System.out.println("\n--- Add To-Do Entry ---");
         System.out.print("Enter the urgency of the to-do entry: ");
         String urgency = scanner.nextLine();
 
@@ -45,7 +49,7 @@ public class AddToDoEntryUI implements Runnable {
         }
 
         GreenSpace selectedGreenSpace = greenSpaces.get(greenSpaceChoice - 1);
-        controller.addToDoEntry(urgency, selectedGreenSpace, duration);
+        controller.addToDoEntry(urgency, selectedGreenSpace, duration,task);
         System.out.println("To-Do entry added successfully.");
     }
 }

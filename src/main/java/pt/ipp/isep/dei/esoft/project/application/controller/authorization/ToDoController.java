@@ -28,8 +28,8 @@ public class ToDoController {
      * @param duration
      */
 
-    public void addToDoEntry(String urgency, GreenSpace greenSpace, Long duration) {
-        ToDoEntry entry = new ToDoEntry(urgency, greenSpace, duration);
+    public void addToDoEntry(String urgency, GreenSpace greenSpace, Long duration,String task) {
+        ToDoEntry entry = new ToDoEntry(urgency, greenSpace, duration,task);
         toDoList.addEntry(entry);
     }
 

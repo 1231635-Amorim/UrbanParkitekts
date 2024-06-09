@@ -4,6 +4,7 @@ public class ToDoEntry {
     private String urgency;
     private GreenSpace associatedGreenSpace;
     private Long duration;
+    private String task;
 
 
     /**
@@ -14,10 +15,11 @@ public class ToDoEntry {
      * @param duration
      */
 
-    public ToDoEntry(String urgency, GreenSpace associatedGreenSpace, Long duration) {
+    public ToDoEntry(String urgency, GreenSpace associatedGreenSpace, Long duration, String task) {
         this.urgency = urgency;
         this.associatedGreenSpace = associatedGreenSpace;
         this.duration = duration;
+        this.task=task;
     }
 
     /**
@@ -28,6 +30,16 @@ public class ToDoEntry {
 
     public String getUrgency() {
         return urgency;
+    }
+
+    /**
+     * gets the urgency of the entry
+     *
+     * @return the urgency
+     */
+
+    public  String getTask(){
+        return task;
     }
 
     /**
@@ -70,6 +82,15 @@ public class ToDoEntry {
     }
 
     /**
+     * sets the duration
+     * @param
+     */
+
+    public void setTask(String task){
+        this.task=task;
+    }
+
+    /**
      * sets the associated green space
      * @param associatedGreenSpace
      */
@@ -86,6 +107,7 @@ public class ToDoEntry {
     @Override
     public String toString() {
         return "ToDoEntry{" +
+                "task=" + task + '\'' +
                 "urgency='" + urgency + '\'' +
                 ", associatedGreenSpace=" + associatedGreenSpace.getName() +
                 '}';
