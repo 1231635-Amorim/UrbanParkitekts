@@ -26,16 +26,12 @@ public class AssignTeamToAgendaEntryUI implements Runnable {
         public void run() {
             System.out.println("--- Assign Team to Agenda Entry ---");
 
-            // Obter detalhes da entrada na agenda
             ToDoEntry toDoEntry = getToDoEntryDetails();
 
-            // Obter detalhes da equipe
             Team team = getTeamDetails();
 
-            // Criar a entrada na agenda
             AgendaEntry agendaEntry = createAgendaEntry(toDoEntry);
 
-            // Atribuir equipe à entrada na agenda
             controller.assignTeamToAgenda(agendaEntry, team);
 
             System.out.println("Team successfully assigned to agenda entry.");
@@ -45,8 +41,6 @@ public class AssignTeamToAgendaEntryUI implements Runnable {
             System.out.print("Enter task description: ");
             String taskDescription = scanner.nextLine();
 
-            // Outros detalhes da entrada na agenda
-            // ...
 
             return new ToDoEntry(taskDescription);
         }
@@ -58,8 +52,6 @@ public class AssignTeamToAgendaEntryUI implements Runnable {
         }
 
         private AgendaEntry createAgendaEntry(ToDoEntry toDoEntry) {
-            // Criar a entrada na agenda com os detalhes fornecidos
-            // ...
             return new AgendaEntry(toDoEntry, "vehicles", "time interval",  LocalDate.now(), "Planned");
         }
 
