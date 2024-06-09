@@ -17,4 +17,8 @@ public class ToDoList {
     public List<ToDoEntry> getEntries() {
         return new ArrayList<>(entries);
     }
+
+    public void setEntries(List<ToDoEntry> entries) {
+        this.entries = entries;
+    }
 }

@@ -23,6 +23,18 @@ public class ToDoEntry {
         return duration;
     }
 
+    public void setUrgency(String urgency){
+        this.urgency =urgency;
+    }
+
+    public void setDuration(Long duration){
+        this.duration =duration;
+    }
+
+    public void setAssociatedGreenSpace(GreenSpace associatedGreenSpace){
+        this.associatedGreenSpace =associatedGreenSpace;
+    }
+
     @Override
     public String toString() {
         return "ToDoEntry{" +
