@@ -15,7 +15,6 @@ import pt.ipp.isep.dei.esoft.project.application.controller.authorization.*;
 import pt.ipp.isep.dei.esoft.project.config.SizeDescendingSorter;
 import pt.ipp.isep.dei.esoft.project.config.NameAscendingSorter;
 
-
 import java.io.IOException;
 import java.util.List;
 
@@ -30,26 +29,45 @@ public class ListGreenSpacesControllerGUI implements ControllerWithEmail {
     private String userEmail;
     private GreenSpaceSorter sortingAlgorithm;
 
+    /**
+     * Sets the user email.
+     *
+     * @param userEmail the email of the user
+     */
     @Override
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
 
+    /**
+     * Gets the user email.
+     *
+     * @return the email of the user
+     */
     public String getUserEmail() {
         return userEmail;
     }
 
+    /**
+     * Initializes the controller, setting up the sorting algorithm choice box and displaying green spaces.
+     */
     public void initialize() {
         setUserEmail(GsmUIApplication.getUserEmail());
         setupSortingAlgorithmChoiceBox();
         displayGreenSpaces();
     }
 
+    /**
+     * Sets up the sorting algorithm choice box with available sorting options.
+     */
     private void setupSortingAlgorithmChoiceBox() {
         sortingAlgorithmChoiceBox.getItems().addAll("Size Descending", "Name Ascending");
         sortingAlgorithmChoiceBox.setValue("Size Descending");
     }
 
+    /**
+     * Displays the green spaces in the list view, sorted according to the selected sorting algorithm.
+     */
     private void displayGreenSpaces() {
         sortingAlgorithm = null; // Placeholder
 
@@ -75,6 +93,13 @@ public class ListGreenSpacesControllerGUI implements ControllerWithEmail {
         }
     }
 
+    /**
+     * Shows an alert dialog with the specified parameters.
+     *
+     * @param alertType the type of the alert
+     * @param title the title of the alert
+     * @param message the message of the alert
+     */
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -82,6 +107,11 @@ public class ListGreenSpacesControllerGUI implements ControllerWithEmail {
         alert.showAndWait();
     }
 
+    /**
+     * Handles the back button action, switching to the main menu scene.
+     *
+     * @param actionEvent the event triggered by the back button
+     */
     @FXML
     public void handleBack(ActionEvent actionEvent) {
         try {
@@ -92,6 +122,11 @@ public class ListGreenSpacesControllerGUI implements ControllerWithEmail {
         }
     }
 
+    /**
+     * Updates the sorting algorithm based on the user's selection and refreshes the green spaces list.
+     *
+     * @param actionEvent the event triggered by the sorting algorithm choice box
+     */
     @FXML
     public void updateSortingAlgorithm(ActionEvent actionEvent) {
         String selectedAlgorithm = sortingAlgorithmChoiceBox.getValue();

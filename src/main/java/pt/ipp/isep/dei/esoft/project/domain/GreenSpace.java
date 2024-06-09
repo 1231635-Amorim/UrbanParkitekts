@@ -145,6 +145,12 @@ public abstract class GreenSpace {
         return email;
     }
 
+    /**
+     * method to convert the area to hectares
+     *
+     * @return the area in hectares
+     */
+
     public double getAreaInHectares() {
         return area / 10000; // 1 hectare = 10,000 square meters
     }

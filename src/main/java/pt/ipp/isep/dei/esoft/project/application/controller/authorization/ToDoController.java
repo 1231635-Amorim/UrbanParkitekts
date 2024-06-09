@@ -10,14 +10,34 @@ import java.util.List;
 public class ToDoController {
     private ToDoList toDoList;
 
+    /**
+     * Constructor to create a ToDoController.
+     *
+     * @param
+     */
+
     public ToDoController() {
         this.toDoList = new ToDoList();
     }
+
+    /**
+     * this method adds all the parameters to the entry
+     *
+     * @param urgency
+     * @param greenSpace
+     * @param duration
+     */
 
     public void addToDoEntry(String urgency, GreenSpace greenSpace, Long duration) {
         ToDoEntry entry = new ToDoEntry(urgency, greenSpace, duration);
         toDoList.addEntry(entry);
     }
+
+    /**
+     * get all the entries
+     *
+     * @return
+     */
 
     public List<ToDoEntry> getToDoEntries() {
         return toDoList.getEntries();

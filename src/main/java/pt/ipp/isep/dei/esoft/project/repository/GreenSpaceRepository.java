@@ -17,6 +17,9 @@ public class GreenSpaceRepository {
         loadConfiguration();
     }
 
+    /**
+     * Loads the configuration for the sorting algorithm from a properties file.
+     */
     private static void loadConfiguration() {
         try (InputStream input = GreenSpaceRepository.class.getClassLoader().getResourceAsStream("sorting_config.properties")) {
             Properties prop = new Properties();
@@ -33,6 +36,13 @@ public class GreenSpaceRepository {
         }
     }
 
+    /**
+     * Adds a green space to the repository.
+     *
+     * @param greenSpace the green space to add
+     * @throws NullPointerException if the green space is null
+     * @throws IllegalArgumentException if the green space is a duplicate
+     */
     public void addGreenSpace(GreenSpace greenSpace) {
         if (greenSpace == null) {
             throw new NullPointerException("GreenSpace cannot be null");
@@ -43,6 +53,11 @@ public class GreenSpaceRepository {
         greenSpaces.add(greenSpace);
     }
 
+    /**
+     * Retrieves the list of green spaces, sorted according to the configured sorting algorithm.
+     *
+     * @return a sorted list of green spaces
+     */
     public List<GreenSpace> getGreenSpaces() {
         List<GreenSpace> sortedGreenSpaces;
         switch (sortingAlgorithm.toUpperCase()) {
@@ -58,6 +73,12 @@ public class GreenSpaceRepository {
         return sortedGreenSpaces;
     }
 
+    /**
+     * Sorts the list of green spaces in descending order by area using the quicksort algorithm.
+     *
+     * @param list the list to sort
+     * @return the sorted list
+     */
     private List<GreenSpace> quickSortByAreaDesc(List<GreenSpace> list) {
         if (list.size() <= 1) {
             return list;
@@ -87,6 +108,12 @@ public class GreenSpaceRepository {
         return sorted;
     }
 
+    /**
+     * Sorts the list of green spaces in descending order by area using the bubblesort algorithm.
+     *
+     * @param list the list to sort
+     * @return the sorted list
+     */
     private List<GreenSpace> bubbleSortByAreaDesc(List<GreenSpace> list) {
         boolean swapped;
         do {
@@ -104,13 +131,23 @@ public class GreenSpaceRepository {
         return list;
     }
 
-
-
+    /**
+     * Checks if the repository already contains the specified green space.
+     *
+     * @param greenSpace the green space to check
+     * @return true if the green space is already in the repository, false otherwise
+     */
     private boolean containsGreenSpace(GreenSpace greenSpace) {
         return greenSpaces.stream()
                 .anyMatch(gs -> gs.equals(greenSpace));
     }
 
+    /**
+     * Finds all green spaces associated with the specified user email.
+     *
+     * @param userEmail the email of the user
+     * @return a list of green spaces associated with the user
+     */
     public List<GreenSpace> findByUserEmail(String userEmail) {
         List<GreenSpace> userGreenSpaces = new ArrayList<>();
         for (GreenSpace greenSpace : greenSpaces) {
@@ -121,6 +158,9 @@ public class GreenSpaceRepository {
         return userGreenSpaces;
     }
 
+    /**
+     * Clears all green spaces from the repository.
+     */
     public void clear() {
         greenSpaces.clear();
     }
