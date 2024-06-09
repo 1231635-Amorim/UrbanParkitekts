@@ -13,6 +13,8 @@ public class Repositories {
     private final SkillsRepository skillsRepository;
     private final GreenSpaceRepository greenSpaceRepository;
     private final TeamProposalRepository teamProposalRepository;
+    private final ToDoListRepository toDoListRepository;
+
 
 
     private Repositories() {
@@ -24,6 +26,8 @@ public class Repositories {
         skillsRepository = new SkillsRepository();
         greenSpaceRepository = new GreenSpaceRepository();
         teamProposalRepository = new TeamProposalRepository();
+        toDoListRepository = new ToDoListRepository();
+
     }
 
     public static Repositories getInstance() {
@@ -60,4 +64,6 @@ public class Repositories {
         return greenSpaceRepository;
     }
     public TeamProposalRepository getTeamProposalRepository() { return teamProposalRepository;}
+    public ToDoListRepository getToDoListRepository() { return toDoListRepository;}
+
 }

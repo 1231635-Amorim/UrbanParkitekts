@@ -7,18 +7,9 @@ import pt.ipp.isep.dei.esoft.project.repository.GreenSpaceRepository;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import pt.ipp.isep.dei.esoft.project.domain.Agenda;
-
-
-import pt.ipp.isep.dei.esoft.project.domain.*;
-import pt.ipp.isep.dei.esoft.project.repository.GreenSpaceRepository;
 import pt.ipp.isep.dei.esoft.project.ui.console.utils.EmailService;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class AddNewEntryAgendaController {
 
@@ -33,13 +24,11 @@ public class AddNewEntryAgendaController {
         this.agenda = new Agenda();
         this.toDoList = new ToDoList();
         this.agendaController = new AgendaController();
-        this.emailService = EmailServiceFactory.createEmailService();
+        this.emailService = new EmailService();
     }
 
     public void addAgendaEntry(ToDoEntry selectedToDoEntry, String team, String vehiclesEquipment, String timeInterval, LocalDate date, String status) {
-        // Verificar se a entrada está na ToDo List antes de adicionar à Agenda
         if (toDoList.contains(selectedToDoEntry)) {
-            // Adicionar entrada à Agenda
             agendaController.addAgendaEntry(selectedToDoEntry, team, vehiclesEquipment, timeInterval, date, status);
             System.out.println("Agenda entry added successfully.");
         } else {
@@ -56,7 +45,6 @@ public class AddNewEntryAgendaController {
         toDoList.addEntry(entry);
     }
 
-    // Método para obter a ToDoList
     public ToDoList getToDoList() {
         return toDoList;
     }
@@ -71,14 +59,12 @@ public class AddNewEntryAgendaController {
             System.out.println("Error: Agenda entry not found.");
         }
     }
-    // Método para enviar mensagem de atribuição para a equipe
     private void sendAssignmentMessage(String team, AgendaEntry entry) {
         String subject = "New Assignment: " + entry.getToDoEntry().getTaskDescription();
         String message = "You have been assigned to a new task: " + entry.getToDoEntry().getTaskDescription();
-        for (String email : team.getMemberEmails()) {
-            emailService.sendEmail(email, subject, message);
-        }
+        emailService.sendEmail(team, subject, message);
     }
+
 }
 
 
