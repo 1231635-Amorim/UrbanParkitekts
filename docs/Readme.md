@@ -12,8 +12,6 @@ The teams consists of students identified in the following table.
 
 # 2. Task Distribution ###
 
-Throughout the project development period, the distribution of _tasks / requirements / features_ by the team members
-was carried out as described in the following table.
 
 **Keep this table always up-to-date.**
 
