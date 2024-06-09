@@ -47,23 +47,19 @@ public class AddNewEntryAgendaController {
         return toDoList;
     }
 
-    public void assignTeamToAgendaEntry(UUID agendaEntryId, String team) {
-        AgendaEntry entry = agendaController.getAgenda().getEntryById(agendaEntryId);
-        if (entry != null) {
-            entry.setTeam(team);
-            sendAssignmentMessage(team, entry);
-            System.out.println("Team assigned to agenda entry successfully.");
-        } else {
-            System.out.println("Error: Agenda entry not found.");
+
+    public void assignTeamToAgenda(AgendaEntry agendaEntry, Team team) {
+        String message = "Você foi atribuído a uma nova tarefa na agenda.";
+        String[] memberEmails = new String[0];
+        for (String email : memberEmails) {
+            emailService.sendEmail(email, "Nova Tarefa na Agenda", message);
         }
     }
-    private void sendAssignmentMessage(String team, AgendaEntry entry) {
-        String subject = "New Assignment: " + entry.getToDoEntry().getTaskDescription();
-        String message = "You have been assigned to a new task: " + entry.getToDoEntry().getTaskDescription();
-        emailService.sendEmail(team, subject, message);
     }
 
-}
+
+
+
 
 
 
