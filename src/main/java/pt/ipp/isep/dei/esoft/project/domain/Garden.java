@@ -18,8 +18,7 @@ public class Garden extends GreenSpace {
      *
      * @return the formatted details string
      */
-    @Override
     public String displayDetails() {
-        return String.format("%s: %s, Area: %.1f hectares", getType(), getName(), getAreaInHectares());
+        return String.format("%s: %s, Area: %.1f hectares", this.getType(), this.getName(), this.getArea());
     }
 }

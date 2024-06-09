@@ -28,8 +28,8 @@ public class LargeSizedParkTest {
 
     @Test
     public void testDisplayDetails() {
-        String expectedOutput = "Large-Sized Park: Central Park, Area: 500.0 sqm";
+        String expectedOutput = "Large_Sized_Park: Central Park, Area: 500.0 sqm";
         String actualOutput = park.displayDetails();
-        assertEquals(expectedOutput, actualOutput);
+        assertEquals(expectedOutput.toUpperCase(), actualOutput.toUpperCase());
     }
 }

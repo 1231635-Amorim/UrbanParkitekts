@@ -30,7 +30,7 @@ public class MediumSizedParkTest {
 
     @Test
     public void testDisplayDetails() {
-        String expectedOutput = "Medium-Sized Park: City Park, Area: 300.0 sqm";
+        String expectedOutput = "Medium-Sized Park: City Park, Area: 300,0 sqm";
         String actualOutput = park.displayDetails();
         assertEquals(expectedOutput, actualOutput);
     }

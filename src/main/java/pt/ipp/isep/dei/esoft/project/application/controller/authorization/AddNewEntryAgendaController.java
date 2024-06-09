@@ -28,7 +28,7 @@ public class AddNewEntryAgendaController {
     }
 
     public void addAgendaEntry(String taskDescription, String team, String vehiclesEquipment, String timeInterval, LocalDate date, String status) {
-        ToDoEntry selectedToDoEntry = new ToDoEntry(taskDescription, "user@example.com", true); // Substitua o email do usuário e o status pendente conforme necessário
+        ToDoEntry selectedToDoEntry = new ToDoEntry(taskDescription, "user@example.com", true);
         agendaController.addAgendaEntry(selectedToDoEntry, team, vehiclesEquipment, timeInterval, date, status);
     }
 

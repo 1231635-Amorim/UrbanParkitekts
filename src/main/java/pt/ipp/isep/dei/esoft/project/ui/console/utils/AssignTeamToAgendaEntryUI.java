@@ -55,5 +55,4 @@ public class AssignTeamToAgendaEntryUI implements Runnable {
             return new AgendaEntry(toDoEntry, "vehicles", "time interval",  LocalDate.now(), "Planned");
         }
 
-
 }

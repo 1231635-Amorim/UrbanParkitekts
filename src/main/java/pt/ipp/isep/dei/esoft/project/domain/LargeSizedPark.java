@@ -1,4 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.domain;
+import java.util.Locale;
 
 /**
  * This class extends the GreenSpace class and represents a large-sized park.
@@ -21,9 +22,7 @@ public  class LargeSizedPark extends GreenSpace {
      *
      * @return a string containing details about the large-sized park
      */
-    @Override
     public String displayDetails() {
-        return "Large-Sized Park: " + getName() + ", Area: " + getAreaInHectares() + " hectares";
+        return String.format(Locale.ENGLISH, "%s: %s, Area: %.1f sqm", this.getType(), this.getName(), this.getArea());
     }
-
 }
