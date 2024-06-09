@@ -30,6 +30,10 @@ public class ToDoEntry {
     public ToDoEntry(String taskDescription, String userEmail, boolean pending) {
     }
 
+    public ToDoEntry(String taskDescription) {
+        this.task = taskDescription;
+    }
+
 
     /**
      * gets the urgency of the entry

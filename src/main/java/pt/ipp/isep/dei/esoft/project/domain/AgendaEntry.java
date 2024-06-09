@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class AgendaEntry {
         private ToDoEntry toDoEntry;
-        private String team;
+        private Team team;
         private String vehiclesEquipment;
         private String timeInterval;
         private LocalDate date;
@@ -15,7 +15,7 @@ public class AgendaEntry {
         private boolean pending;
     private final UUID id;
 
-        public AgendaEntry(ToDoEntry toDoEntry, String team, String vehiclesEquipment, String timeInterval, LocalDate date, String status) {
+        public AgendaEntry(ToDoEntry toDoEntry, String vehiclesEquipment, String timeInterval, LocalDate date, String status) {
             this.id = UUID.randomUUID();
             this.toDoEntry = toDoEntry;
             this.team = team;
@@ -29,7 +29,7 @@ public class AgendaEntry {
         return toDoEntry;
     }
 
-    public String getTeam() {
+    public Team getTeam() {
         return team;
     }
 
@@ -46,7 +46,7 @@ public class AgendaEntry {
         this.toDoEntry = toDoEntry;
     }
 
-    public void setTeam(String team) {
+    public void setTeam(Team team) {
         this.team = team;
     }
 
@@ -75,6 +75,11 @@ public class AgendaEntry {
     public UUID getId() {
         return id;
     }
+
+    public void assignTeam(Team team) {
+        this.team = team;
+    }
+
 }
 
 
