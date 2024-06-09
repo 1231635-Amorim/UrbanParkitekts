@@ -1,4 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.domain;
+import java.text.DecimalFormat;
 
 /**
  * This class represents a Medium-Sized Park, which is a type of GreenSpace.
@@ -23,8 +24,8 @@ public  class MediumSizedPark extends GreenSpace {
      */
     @Override
     public String displayDetails() {
-        System.out.println("Medium-Sized Park: " + getName() + ", Area: " + getAreaInHectares() + " hectares");
-        return null;
+        DecimalFormat df = new DecimalFormat("#0.0");
+        return "Medium-Sized Park: " + getName() + ", Area: " + df.format(getArea()).replace(",", ".") + " sqm";
     }
 
 }

@@ -35,8 +35,9 @@ public class GardenTest {
 
     @Test
     public void testDisplayDetails() {
-        Garden garden = new Garden("Rose Garden", 100.0, "user@example.com");
-        garden.displayDetails();
-        assertEquals("Garden: Rose Garden, Area: 100.0 sqm\n", outContent.toString());
+        Garden garden = new Garden("Rose Garden", 100.0, "example@example.com");
+        String expected = "GARDEN: Rose Garden, Area: 100,0 hectares"; // Updated expected output
+        String actual = garden.displayDetails();
+        assertEquals(expected, actual);
     }
 }

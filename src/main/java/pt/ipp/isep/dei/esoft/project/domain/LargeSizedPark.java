@@ -23,7 +23,7 @@ public  class LargeSizedPark extends GreenSpace {
      */
     @Override
     public String displayDetails() {
-        return "Large-Sized Park: " + getName() + ", Area: " + getAreaInHectares() + " hectares";
+        return "Large-Sized Park: " + getName() + ", Area: " + getArea() + " sqm";
     }
 
 }

@@ -43,12 +43,22 @@ public class GreenSpaceRepository {
      * @throws NullPointerException if the green space is null
      * @throws IllegalArgumentException if the green space is a duplicate
      */
+    /**
+     * Adds a green space to the repository.
+     *
+     * @param greenSpace the green space to add
+     * @throws NullPointerException if the green space is null
+     * @throws IllegalArgumentException if the green space is a duplicate or invalid
+     */
     public void addGreenSpace(GreenSpace greenSpace) {
         if (greenSpace == null) {
             throw new NullPointerException("GreenSpace cannot be null");
         }
         if (containsGreenSpace(greenSpace)) {
             throw new IllegalArgumentException("Duplicate GreenSpace cannot be added");
+        }
+        if (greenSpace.getAreaInHectares() <= 0) {
+            throw new IllegalArgumentException("Invalid GreenSpace area");
         }
         greenSpaces.add(greenSpace);
     }

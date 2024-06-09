@@ -1,4 +1,5 @@
 package pt.ipp.isep.dei.esoft.project.domain;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -32,16 +33,16 @@ public abstract class GreenSpace {
     /**
      * Constructs a new GreenSpace with the given name, area, type, and email.
      *
-     * @param name the name of the green space
-     * @param area the area of the green space
-     * @param type the type of the green space
+     * @param name  the name of the green space
+     * @param area  the area of the green space
+     * @param type  the type of the green space
      * @param email the email address of the green space
      */
     public GreenSpace(String name, double area, GreenSpaceType type, String email) {
-        this.name = name;
-        this.area = area;
-        this.type = type;
-        this.email = email;
+        this.name = validateName(name);
+        this.area = validateArea(area);
+        this.type = validateType(type);
+        this.email = validateEmail(email);
         this.toDoList = new ArrayList<>();
     }
 
@@ -59,7 +60,7 @@ public abstract class GreenSpace {
      * @param name the name to be validated
      * @return the validated name
      */
-    private String validateName(String name) {
+    protected static String validateName(String name) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Name cannot be null or empty");
         }
@@ -72,7 +73,7 @@ public abstract class GreenSpace {
      * @param area the area to be validated
      * @return the validated area
      */
-    private double validateArea(double area) {
+    protected static double validateArea(double area) {
         if (area <= 0) {
             throw new IllegalArgumentException("Area must be positive");
         }
@@ -85,7 +86,7 @@ public abstract class GreenSpace {
      * @param type the type to be validated
      * @return the validated type
      */
-    private GreenSpaceType validateType(GreenSpaceType type) {
+    protected static GreenSpaceType validateType(GreenSpaceType type) {
         if (type == null) {
             throw new IllegalArgumentException("Type cannot be null");
         }
@@ -98,7 +99,7 @@ public abstract class GreenSpace {
      * @param email the email address to be validated
      * @return the validated email address
      */
-    private String validateEmail(String email) {
+    protected static String validateEmail(String email) {
         if (email == null || !email.contains("@")) {
             throw new IllegalArgumentException("Invalid email address");
         }
