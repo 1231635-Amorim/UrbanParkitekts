@@ -14,15 +14,15 @@
     <hgap>20</hgap>
     <vgap>20</vgap>
 
-    <Label text="Nome do Espaço Verde:"/>
+    <Label text="Green Space Name:"/>
     <TextField fx:id="nameField" GridPane.columnIndex="1"/>
 
-    <Label text="Área (metros quadrados):" GridPane.rowIndex="1"/>
+    <Label text="Area (square meters):" GridPane.rowIndex="1"/>
     <TextField fx:id="areaField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-    <Label text="Tipo de Espaço:" GridPane.rowIndex="2"/>
+    <Label text="Space Type:" GridPane.rowIndex="2"/>
     <ComboBox fx:id="typeComboBox" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
-    <Button text="Registrar Espaço Verde" onAction="#registerGreenSpace" GridPane.columnIndex="1" GridPane.rowIndex="3"/> <!-- Register button -->
-    <Button text="Voltar" onAction="#goBack" GridPane.columnIndex="2" GridPane.rowIndex="3"/> <!-- Back button -->
+    <Button text="Register Green Space" onAction="#registerGreenSpace" GridPane.columnIndex="1" GridPane.rowIndex="3"/> <!-- Register button -->
+    <Button text="Back" onAction="#goBack" GridPane.columnIndex="2" GridPane.rowIndex="3"/> <!-- Back button -->
 </GridPane>
